@@ -1,0 +1,42 @@
+<emulators>
+    <emulator>
+        <name>ZEsarUX</name>
+        <type>zxspectrum</type>
+        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+    </emulator>
+    <emulator>
+        <name>openMSX</name>
+        <type>msx</type>
+        <command>/Applications/openMSX.app/Contents/MacOS/openmsx</command>
+    </emulator>
+    <emulator>
+        <type>amiga</type>
+        <name>ZEsarUX2</name>
+        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+    </emulator>
+    <emulator>
+        <type>apple2</type>
+        <name>ZEsarUX33</name>
+        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+    </emulator>
+    <emulator>
+        <type>c64</type>
+        <name>ZEsarUX - FUll</name>
+        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+    </emulator>
+    <emulator>
+        <type>apple2</type>
+        <name>ZEsarUX De novo</name>
+        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+    </emulator>
+    <emulator>
+        <type>apple2</type>
+        <name>ZEsarUX la vai</name>
+        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+    </emulator>
+    <emulator>
+        <type>apple2</type>
+        <name>ZEsarUX Esse sim</name>
+        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+    </emulator>
+</emulators>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>EmulOS</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="bootstrap-icons/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="index.css" />
+    <style></style>
+  </head>
+  <body>
+    <div class="d-flex">
+      <!-- Sidebar -->
+      <nav class="sidebar d-flex flex-column p-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a href="#" class="nav-link"> <i class="bi bi bi-gear"></i> Team </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"> <i class="bi bi-folder-fill"></i> Projects </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"> <i class="bi bi-calendar-fill"></i> Calendar </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"> <i class="bi bi-file-earmark-fill"></i> Documents </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link"> <i class="bi bi-graph-up"></i> Reports </a>
+          </li>
+        </ul>
+
+        <a href="#" class="nav-link"> <i class="bi bi-gear-fill"></i> Settings </a>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="main-content flex-grow-1">
+        <div class="container mt-4">
+          <div class="row" id="emulator-list"></div>
+        </div>
+      </div>
+    </div>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="renderer.js"></script>
+  </body>
+</html>
