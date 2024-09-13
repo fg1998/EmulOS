@@ -8,6 +8,11 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+// HOT RELOAD
+try {
+  require('electron-reloader')(module)
+} catch (_) {}
+
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -51,9 +56,7 @@ app.on("window-all-closed", () => {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and import them here.
-
 ipcMain.on("emulatorClick", (event, content) => {
-  execFile(content.command);
+  const r = execFile(content.command, content.parameter.split(" "));
+  console.log(r);
 });

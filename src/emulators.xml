@@ -1,42 +1,62 @@
 <emulators>
     <emulator>
-        <name>ZEsarUX</name>
+        <name>Spectrum 128</name>
+        <emulator>ZEsarUX</emulator>
         <type>zxspectrum</type>
         <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+        <parameter>--machine 128k --fullscreen</parameter>
+    </emulator>
+    <emulator>
+        <name>Sinclair</name>
+        <emulator>ZEsarUX</emulator>
+        <type>zxspectrum</type>
+        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+        <machine>128K</machine>
+        <machine>TK90X</machine>
+        <machine>ZX81</machine>
+
     </emulator>
     <emulator>
         <name>openMSX</name>
+        <emulator></emulator>
         <type>msx</type>
         <command>/Applications/openMSX.app/Contents/MacOS/openmsx</command>
+        <parameters></parameters>
     </emulator>
     <emulator>
         <type>amiga</type>
+        <emulator></emulator>
         <name>ZEsarUX2</name>
         <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+        <parameters></parameters>
     </emulator>
     <emulator>
         <type>apple2</type>
+        <emulator></emulator>
         <name>ZEsarUX33</name>
         <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+        <parameters></parameters>
     </emulator>
     <emulator>
         <type>c64</type>
+        <emulator></emulator>
         <name>ZEsarUX - FUll</name>
         <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+        <parameters></parameters>
     </emulator>
     <emulator>
         <type>apple2</type>
+        <emulator></emulator>
         <name>ZEsarUX De novo</name>
         <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+        <parameters></parameters>
     </emulator>
     <emulator>
         <type>apple2</type>
+        <emulator></emulator>
         <name>ZEsarUX la vai</name>
         <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+        <parameters></parameters>
     </emulator>
-    <emulator>
-        <type>apple2</type>
-        <name>ZEsarUX Esse sim</name>
-        <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
-    </emulator>
+
 </emulators>

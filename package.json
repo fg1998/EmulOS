@@ -20,13 +20,11 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.4.0",
     "@electron-forge/plugin-fuses": "^7.4.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "32.0.2"
+    "electron": "32.0.2",
+    "electron-reloader": "^1.2.3"
   },
   "keywords": [],
-  "author": {
-    "name": "Fernando Garcia",
-    "email": "fg1998@gmail.com"
-  },
+  "author": "Fernando Garcia <fg1998@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bootstrap-icons": "^1.11.3",
