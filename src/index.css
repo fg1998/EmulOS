@@ -1,3 +1,7 @@
+.pure-menu-link:hover {
+  background-color: #bbb;
+}
+
 .sidebar {
   background-color: #f0f0f0;
   padding-top: 20px;

@@ -12,9 +12,44 @@ const parser = new XMLParser.XMLParser();
 // PARSEANDO O ARQUIVO XML E GERANDO OS CARDS DOS EMULADORES
 const jsonResult = parser.parse(emulatorsXML);
 
-jsonResult.emulators.brand.forEach((element,index) => {
-  console.log(element)
+// ADD brand buttons
+jsonResult.emulators.brand.forEach((element, index) => {
+  const item = `<li class='pure-menu-item'> \
+                <a href='#' class='pure-menu-link'> <i class='fa fa-home'></i> ${element.name} </a> \
+                </li>`;
+  console.log(item);
+
+  const li = document.createElement("li");
+  li.className = "pure-menu-item";
+
+  const a = document.createElement("a");
+  a.href = "#";
+  a.id = `button${index}`;
+  a.dataset.brand = element.name
+  a.className = "pure-menu-link";
+
+  const icon = document.createElement("i");
+  icon.className = "fa fa-home";
+
+  a.appendChild(icon);
+  a.appendChild(document.createTextNode(` ${element.name}`));
+  li.appendChild(a);
+  document.getElementById("brandMenu").appendChild(li);
 });
+
+
+
+
+
+// ADD CLICK EVENT O BRAND BUTTONS
+jsonResult.emulators.brand.forEach((element, index) => {
+  var t = document.getElementById("button" + index);
+  t.addEventListener('click', function(event) {
+    event.preventDefault();
+    const brand = this.dataset.brand
+    console.log(brand)
+  })
+})
 
 //const emulatorList = document.getElementById("emulator-list");
 
