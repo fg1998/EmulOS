@@ -11,8 +11,14 @@ const parser = new XMLParser.XMLParser();
 
 // PARSEANDO O ARQUIVO XML E GERANDO OS CARDS DOS EMULADORES
 const jsonResult = parser.parse(emulatorsXML);
-const emulatorList = document.getElementById("emulator-list");
 
+jsonResult.emulators.brand.forEach((element,index) => {
+  console.log(element)
+});
+
+//const emulatorList = document.getElementById("emulator-list");
+
+/*
 jsonResult.emulators.emulator.forEach((element, index) => {
   const icone = `${theme}/${element.type}/console.png`;
 
@@ -36,3 +42,4 @@ jsonResult.emulators.emulator.forEach((element, index) => {
     ipcRenderer.send("emulatorClick", element);
   });
 });
+*/
