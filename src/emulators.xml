@@ -72,6 +72,13 @@
             <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
             <parameter>--machine ACE --fullscreen</parameter>
         </emulator>
+        <emulator>
+            <name>Sinclair QL</name>
+            <desc>16 Bit Sinclair Machine</desc>
+            <type>sinclair</type>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine QL --fullscreen</parameter>
+        </emulator>
     </brand>
     <brand>
         <name>Commodore</name>

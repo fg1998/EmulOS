@@ -2,30 +2,25 @@ const { ipcRenderer } = require("electron");
 var fs = require("fs");
 var path = require("path");
 var XMLParser = require("fast-xml-parser");
+const { electron } = require("process");
 
-var theme = `./themes/es-theme-pixel/`;
-
+//Parsing XML emulators File
 var emulatorsFile = path.join(__dirname, ".", "emulators.xml");
 var emulatorsXML = fs.readFileSync(emulatorsFile);
 const parser = new XMLParser.XMLParser();
-
-// PARSEANDO O ARQUIVO XML E GERANDO OS CARDS DOS EMULADORES
 const jsonResult = parser.parse(emulatorsXML);
+
 
 // ADD brand buttons
 jsonResult.emulators.brand.forEach((element, index) => {
-  const item = `<li class='pure-menu-item'> \
-                <a href='#' class='pure-menu-link'> <i class='fa fa-home'></i> ${element.name} </a> \
-                </li>`;
-  console.log(item);
-
   const li = document.createElement("li");
   li.className = "pure-menu-item";
+  li.dataset.brand = element.name;
 
   const a = document.createElement("a");
   a.href = "#";
   a.id = `button${index}`;
-  a.dataset.brand = element.name
+  a.dataset.brand = element.name;
   a.className = "pure-menu-link";
 
   const icon = document.createElement("i");
@@ -38,18 +33,58 @@ jsonResult.emulators.brand.forEach((element, index) => {
 });
 
 
+// First Brand Selected when open dashboard
+const firstBrand = jsonResult.emulators.brand[0].name
+const menuItem = document.querySelector(`li[data-brand='${firstBrand}']`);
+menuItem.classList.add("pure-menu-selected-background");
+const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == firstBrand);
+doTiles(machineBrand)
 
 
 
-// ADD CLICK EVENT O BRAND BUTTONS
+
+// ADD CLICK EVENT TO BRAND BUTTONS
 jsonResult.emulators.brand.forEach((element, index) => {
   var t = document.getElementById("button" + index);
-  t.addEventListener('click', function(event) {
+  t.addEventListener("click", function (event) {
     event.preventDefault();
-    const brand = this.dataset.brand
-    console.log(brand)
-  })
-})
+
+    selectedBrand = this.dataset.brand;
+
+    //Remove pure-menu-selected-background from previous selected brand
+    var previous = document.querySelector(".pure-menu-selected-background");
+    if (previous) previous.classList.remove("pure-menu-selected-background");
+
+    //Add selected-class to selected button
+    const menuItem = document.querySelector(`li[data-brand='${selectedBrand}']`);
+    menuItem.classList.add("pure-menu-selected-background");
+
+    //Select brand and do Tiles
+    const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectedBrand);
+    doTiles(machineBrand);
+  });
+});
+
+function doTiles(brand) {
+  const content = document.getElementById("content");
+  content.innerHTML = "";
+
+  brand.emulator.forEach((element, index) => {
+    const card = `<div class="pure-u-sm-1-2 pure-u-md-1-3 card" style='position:relative'>
+                    <img src="https://via.placeholder.com/300x250" class="pure-img" alt="Image Placeholder">
+                    <h4>${element.name}</h4>
+                    <p>${element.desc}</p>
+                    <div class="icons" style=''>
+                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-play"></i>
+                      <i class="fa fa-gear"></i>
+                      <i class="fa fa-trash"></i>
+                    </div>
+                  </div>`;
+
+    content.innerHTML = content.innerHTML + card;
+  });
+}
 
 //const emulatorList = document.getElementById("emulator-list");
 
