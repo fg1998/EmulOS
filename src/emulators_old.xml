@@ -1,0 +1,193 @@
+<emulators>
+    <brand>
+        <name>Sinclair</name>
+        <emulator>
+            <name>ZX81</name>
+            <desc>Second Sinclair computer, black and white, 48Kb</desc>
+            <type>sinclair</type>
+            <favorite>false</favorite>
+            <image>zx81.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine zx81 --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>ZX Spectrum</name>
+            <desc>Color, 48Kb</desc>
+            <type>sinclair</type>
+            <favorite>false</favorite>
+            <image>spectrum.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine 48k --fullscreen</parameter>
+        </emulator>
+
+        <emulator>
+            <name>Spectrum 128</name>
+            <desc>Color, 128Kb</desc>
+            <type>sinclair</type>
+            <favorite>false</favorite>
+            <image>128.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine 128k --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Spectrum +3</name>
+            <desc>ROM 4.0</desc>
+            <type>sinclair</type>
+            <favorite>false</favorite>
+            <image>plus3.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine P340 --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Microdigital TK90X</name>
+            <desc>Brasilian Clone</desc>
+            <type>sinclair</type>
+            <favorite>true</favorite>
+            <image>tk90x.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine TK90X --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Sam Coupe</name>
+            <desc>Miles Gordon Spectrum on steroids</desc>
+            <type>Sinclair</type>
+            <favorite>false</favorite>
+            <image>sam.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine Sam --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Pentagon</name>
+            <desc>Russian Clone</desc>
+            <type>Sinclair</type>
+            <favorite>false</favorite>
+            <image>pentagon.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine pentagon --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>ZX Spectrum Next/TBBlue</name>
+            <desc>New Sinclair model</desc>
+            <type>sinclair</type>
+            <favorite>false</favorite>
+            <image>tbblue.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine Sam --fullscreen</parameter>
+        </emulator>
+
+        <emulator>
+            <name>Jupiter Ace</name>
+            <desc>Z80 based non-sinclair machine</desc>
+            <type>sinclair</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Sinclair QL</name>
+            <desc>16 Bit Sinclair Machine</desc>
+            <type>sinclair</type>
+            <favorite>false</favorite>
+            <image>ql.png</image>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine QL --fullscreen</parameter>
+        </emulator>
+    </brand>
+    <brand>
+        <name>Commodore</name>
+         <emulator>
+            <name>Commodore 64</name>
+            <desc>Full Color 8Bit computer, 64Kb Ram</desc>
+            <type>commodore</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Commodore 128</name>
+            <desc>Full Color 8Bit computer, 128Kb Ram</desc>
+            <type>commodore</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Amiga 500</name>
+            <desc>16 Bit computer</desc>
+            <type>commodore</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Amiga 1200</name>
+            <desc>16 Bit computer, AGA graphics</desc>
+            <type>commodore</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+
+    </brand>
+
+
+    <brand>
+        <name>MSX</name>
+        <emulator>
+            <name>HotBit</name>
+            <desc>Brazilian MSX 1.0</desc>
+            <type>msx</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>Expert</name>
+            <desc>Brazilian MSX 1.0</desc>
+            <type>msx</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>VG8000</name>
+            <desc>Philips MSX 1.0</desc>
+            <type>msx</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>FS-A1</name>
+            <desc>Panasonic MSX 2.0</desc>
+            <type>msx</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>HB-F1</name>
+            <desc>Sony MSX 2.0</desc>
+            <type>msx</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>HHB-F1XDJ</name>
+            <desc>Panasonic MSX 2.0+</desc>
+            <type>msx</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+        <emulator>
+            <name>FS-A1GT</name>
+            <desc>Panasonic MSX Turbo R</desc>
+            <type>msx</type>
+            <favorite>false</favorite>
+            <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
+            <parameter>--machine ACE --fullscreen</parameter>
+        </emulator>
+    </brand>
+</emulators>

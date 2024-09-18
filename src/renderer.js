@@ -3,13 +3,13 @@ var fs = require("fs");
 var path = require("path");
 var XMLParser = require("fast-xml-parser");
 const { electron } = require("process");
-const { empire } = require("fontawesome");
 
 //Parsing XML emulators File
 var emulatorsFile = path.join(__dirname, ".", "emulators.xml");
 var emulatorsXML = fs.readFileSync(emulatorsFile);
 const parser = new XMLParser.XMLParser();
 const jsonResult = parser.parse(emulatorsXML);
+console.log(JSON.stringify(jsonResult))
 
 jsonResult.emulators.brand.forEach((element, index) => {
   var menu = document.getElementById("brandMenu");
@@ -27,7 +27,6 @@ jsonResult.emulators.brand.forEach((element, index) => {
 function selectBrand(event) {
   const element = event.target;
   const brand = element.dataset.brand;
-  console.log(brand);
 
   //Remove pure-menu-selected-background from previous selected brand
   var previous = document.querySelector(".pure-menu-selected-background");
@@ -47,10 +46,9 @@ function selectBrand(event) {
   const menuIcon = document.querySelector(`i[data-brand='${brand}']`);
   menuIcon.classList.remove("fa-circle-o");
   menuIcon.classList.add("fa-circle");
-  
-  doTiles(brand)
-}
 
+  doTiles(brand);
+}
 
 const firstBrand = jsonResult.emulators.brand[0].name;
 const menuItem = document.querySelector(`li[data-brand='${firstBrand}']`);
@@ -58,7 +56,7 @@ menuItem.classList.add("pure-menu-selected-background");
 const menuIcon = document.querySelector(`i[data-brand='${firstBrand}']`);
 menuIcon.classList.remove("fa-circle-o");
 menuIcon.classList.add("fa-circle");
-doTiles(firstBrand)
+doTiles(firstBrand);
 
 function doTiles(brandName) {
   const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == brandName);
@@ -97,15 +95,31 @@ function favorite(event) {
   const brand = element.dataset.brand;
   const name = element.dataset.name;
   const favorite = element.dataset.favorite;
-  console.log(brand, name, favorite);
+  const emulator = findEmulator(brand, name);
+  emulator.favorite = true;
+
+  const builder = new XMLParser.XMLBuilder({
+    ignoreAttributes: false,
+    attributeNamePrefix: "", // Para manter os atributos como estavam no XML original
+    format: true, // Adiciona indentação no XML
+  });
+  const updatedXML = builder.build(jsonResult);
+
+  console.log(updatedXML)
+
+  
+  const originalName = path.join(__dirname, ".", "emulators.xml");
+  const oldName = path.join(__dirname, ".", "emulators_old.xml");
+  fs.renameSync(originalName,oldName )
+  fs.writeFileSync(originalName, updatedXML);
+  
 }
 
 function findEmulator(brandName, emulatorName) {
   const brand = jsonResult.emulators.brand.find((b) => b.name === brandName);
   if (brand) {
-    return brand.emulator.find((e) => e.name === emulatorName);
+    var ret = brand.emulator.find((e) => e.name === emulatorName);
+    return ret;
   }
   return null;
 }
-
-

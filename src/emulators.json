@@ -1,0 +1,198 @@
+{
+    "emulators":{
+       "brand":[
+          {
+             "name":"Sinclair",
+             "emulator":[
+                {
+                   "name":"ZX81",
+                   "desc":"Second Sinclair computer, black and white, 48Kb",
+                   "type":"sinclair",
+                   "favorite":false,
+                   "image":"zx81.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine zx81 --fullscreen"
+                },
+                {
+                   "name":"ZX Spectrum",
+                   "desc":"Color, 48Kb",
+                   "type":"sinclair",
+                   "favorite":false,
+                   "image":"spectrum.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine 48k --fullscreen"
+                },
+                {
+                   "name":"Spectrum 128",
+                   "desc":"Color, 128Kb",
+                   "type":"sinclair",
+                   "favorite":false,
+                   "image":"128.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine 128k --fullscreen"
+                },
+                {
+                   "name":"Spectrum +3",
+                   "desc":"ROM 4.0",
+                   "type":"sinclair",
+                   "favorite":false,
+                   "image":"plus3.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine P340 --fullscreen"
+                },
+                {
+                   "name":"Microdigital TK90X",
+                   "desc":"Brasilian Clone",
+                   "type":"sinclair",
+                   "favorite":true,
+                   "image":"tk90x.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine TK90X --fullscreen"
+                },
+                {
+                   "name":"Sam Coupe",
+                   "desc":"Miles Gordon Spectrum on steroids",
+                   "type":"Sinclair",
+                   "favorite":false,
+                   "image":"sam.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine Sam --fullscreen"
+                },
+                {
+                   "name":"Pentagon",
+                   "desc":"Russian Clone",
+                   "type":"Sinclair",
+                   "favorite":false,
+                   "image":"pentagon.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine pentagon --fullscreen"
+                },
+                {
+                   "name":"ZX Spectrum Next/TBBlue",
+                   "desc":"New Sinclair model",
+                   "type":"sinclair",
+                   "favorite":false,
+                   "image":"tbblue.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine Sam --fullscreen"
+                },
+                {
+                   "name":"Jupiter Ace",
+                   "desc":"Z80 based non-sinclair machine",
+                   "type":"sinclair",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"Sinclair QL",
+                   "desc":"16 Bit Sinclair Machine",
+                   "type":"sinclair",
+                   "favorite":false,
+                   "image":"ql.png",
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine QL --fullscreen"
+                }
+             ]
+          },
+          {
+             "name":"Commodore",
+             "emulator":[
+                {
+                   "name":"Commodore 64",
+                   "desc":"Full Color 8Bit computer, 64Kb Ram",
+                   "type":"commodore",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"Commodore 128",
+                   "desc":"Full Color 8Bit computer, 128Kb Ram",
+                   "type":"commodore",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"Amiga 500",
+                   "desc":"16 Bit computer",
+                   "type":"commodore",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"Amiga 1200",
+                   "desc":"16 Bit computer, AGA graphics",
+                   "type":"commodore",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                }
+             ]
+          },
+          {
+             "name":"MSX",
+             "emulator":[
+                {
+                   "name":"HotBit",
+                   "desc":"Brazilian MSX 1.0",
+                   "type":"msx",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"Expert",
+                   "desc":"Brazilian MSX 1.0",
+                   "type":"msx",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"VG8000",
+                   "desc":"Philips MSX 1.0",
+                   "type":"msx",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"FS-A1",
+                   "desc":"Panasonic MSX 2.0",
+                   "type":"msx",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"HB-F1",
+                   "desc":"Sony MSX 2.0",
+                   "type":"msx",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"HHB-F1XDJ",
+                   "desc":"Panasonic MSX 2.0+",
+                   "type":"msx",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                },
+                {
+                   "name":"FS-A1GT",
+                   "desc":"Panasonic MSX Turbo R",
+                   "type":"msx",
+                   "favorite":false,
+                   "command":"/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+                   "parameter":"--machine ACE --fullscreen"
+                }
+             ]
+          }
+       ]
+    }
+ }
