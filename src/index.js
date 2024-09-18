@@ -56,7 +56,7 @@ app.on("window-all-closed", () => {
   }
 });
 
-ipcMain.on("emulatorClick", (event, content) => {
+ipcMain.on("playClick", (event, content) => {
   const r = execFile(content.command, content.parameter.split(" "));
   console.log(r);
 });

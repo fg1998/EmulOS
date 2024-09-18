@@ -80,7 +80,6 @@
             <desc>Z80 based non-sinclair machine</desc>
             <type>sinclair</type>
             <favorite>false</favorite>
-            <image>ace.png</image>
             <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
             <parameter>--machine ACE --fullscreen</parameter>
         </emulator>
