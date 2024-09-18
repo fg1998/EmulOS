@@ -63,7 +63,7 @@
             <favorite>false</favorite>
             <image>pentagon.png</image>
             <command>/Applications/ZEsarUX.app/Contents/MacOS/zesarux</command>
-            <parameter>--machine Sam --fullscreen</parameter>
+            <parameter>--machine pentagon --fullscreen</parameter>
         </emulator>
         <emulator>
             <name>ZX Spectrum Next/TBBlue</name>

@@ -11,75 +11,57 @@ var emulatorsXML = fs.readFileSync(emulatorsFile);
 const parser = new XMLParser.XMLParser();
 const jsonResult = parser.parse(emulatorsXML);
 
-// ADD brand buttons (Lateral Menu Itens)
 jsonResult.emulators.brand.forEach((element, index) => {
-  const li = document.createElement("li");
-  li.className = "pure-menu-item";
-  li.dataset.brand = element.name;
-
-  const a = document.createElement("a");
-  a.href = "#";
-  a.id = `button${index}`;
-  a.dataset.brand = element.name;
-  a.className = "pure-menu-link";
-
-  const icon = document.createElement("i");
-  icon.className = "fa fa-circle-o";
-  icon.dataset.brand = element.name;
-
-  a.appendChild(icon);
-  a.appendChild(document.createTextNode(` ${element.name}`));
-  li.appendChild(a);
-  document.getElementById("brandMenu").appendChild(li);
+  var menu = document.getElementById("brandMenu");
+  menu.innerHTML =
+    menu.innerHTML +
+    `<li class="pure-menu-item" data-brand="${element.name}"> \
+                        <a href="#" data-brand="${element.name}" onclick='selectBrand(event)' class="pure-menu-link"> \
+                          <i class="fa fa-circle-o"  data-brand="${element.name}"></i> \
+                          ${element.name} \
+                        </a> \
+                      </li>`;
 });
 
-// ADD CLICK EVENT TO BRAND BUTTONS
-jsonResult.emulators.brand.forEach((element, index) => {
-  var t = document.getElementById("button" + index);
-  t.addEventListener("click", function (event) {
-    event.preventDefault();
+// Lateral Menu (brand) Click
+function selectBrand(event) {
+  const element = event.target;
+  const brand = element.dataset.brand;
+  console.log(brand);
 
-    selectedBrand = this.dataset.brand;
+  //Remove pure-menu-selected-background from previous selected brand
+  var previous = document.querySelector(".pure-menu-selected-background");
+  if (previous) previous.classList.remove("pure-menu-selected-background");
 
-    //Remove pure-menu-selected-background from previous selected brand
-    var previous = document.querySelector(".pure-menu-selected-background");
-    if (previous) previous.classList.remove("pure-menu-selected-background");
+  var previousIcon = document.querySelector(".fa-circle");
+  if (previousIcon) {
+    previousIcon.classList.remove("fa-circle");
+    previousIcon.classList.add("fa-circle-o");
+  }
 
-    var previousIcon = document.querySelector(".fa-circle");
-    if (previousIcon) {
-      previousIcon.classList.remove("fa-circle");
-      previousIcon.classList.add("fa-circle-o");
-    }
+  //Add selected-class to selected button
+  const menuItem = document.querySelector(`li[data-brand='${brand}']`);
+  menuItem.classList.add("pure-menu-selected-background");
 
-    //Add selected-class to selected button
-    const menuItem = document.querySelector(`li[data-brand='${selectedBrand}']`);
-    menuItem.classList.add("pure-menu-selected-background");
+  //Change selected icon
+  const menuIcon = document.querySelector(`i[data-brand='${brand}']`);
+  menuIcon.classList.remove("fa-circle-o");
+  menuIcon.classList.add("fa-circle");
+  
+  doTiles(brand)
+}
 
-    //Change selected icon
-    const menuIcon = document.querySelector(`i[data-brand='${selectedBrand}']`);
-    menuIcon.classList.remove("fa-circle-o");
-    menuIcon.classList.add("fa-circle");
 
-    //Select brand and do Tiles
-    const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectedBrand);
-    doTiles(machineBrand);
-    //doActionButtons(machineBrand)
-  });
-});
-
-// First Brand Selected when open dashboard
 const firstBrand = jsonResult.emulators.brand[0].name;
 const menuItem = document.querySelector(`li[data-brand='${firstBrand}']`);
 menuItem.classList.add("pure-menu-selected-background");
 const menuIcon = document.querySelector(`i[data-brand='${firstBrand}']`);
 menuIcon.classList.remove("fa-circle-o");
 menuIcon.classList.add("fa-circle");
+doTiles(firstBrand)
 
-const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == firstBrand);
-doTiles(machineBrand);
-//doActionButtons(machineBrand)
-
-function doTiles(machineBrand) {
+function doTiles(brandName) {
+  const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == brandName);
   const content = document.getElementById("content");
   content.innerHTML = "";
 
@@ -102,58 +84,28 @@ function doTiles(machineBrand) {
   });
 }
 
-
 function play(event) {
   const element = event.target;
   const brand = element.dataset.brand;
-  const name = element.dataset.name
-  const emulator = findEmulator(brand, name)
+  const name = element.dataset.name;
+  const emulator = findEmulator(brand, name);
   ipcRenderer.send("playClick", emulator);
-  
-
 }
 
 function favorite(event) {
   const element = event.target;
   const brand = element.dataset.brand;
-  const name = element.dataset.name
-  const favorite = element.dataset.favorite
-  console.log(brand, name, favorite)
+  const name = element.dataset.name;
+  const favorite = element.dataset.favorite;
+  console.log(brand, name, favorite);
+}
+
+function findEmulator(brandName, emulatorName) {
+  const brand = jsonResult.emulators.brand.find((b) => b.name === brandName);
+  if (brand) {
+    return brand.emulator.find((e) => e.name === emulatorName);
+  }
+  return null;
 }
 
 
-function findEmulator(brandName, emulatorName){
-  const brand = jsonResult.emulators.brand.find(b => b.name === brandName);
-  if (brand) {
-    return brand.emulator.find(e => e.name === emulatorName);
-  }
-  return null;
-};
-
-//const emulatorList = document.getElementById("emulator-list");
-
-/*
-jsonResult.emulators.emulator.forEach((element, index) => {
-  const icone = `${theme}/${element.type}/console.png`;
-
-  const card = `<div class='col-md-4 col-lg-3 file-card' id='button${index}'> \
-  <div class='card shadow-sm'> \
-    <div class='img-thumbnail'> \
-        <img src='${icone}'  /> \
-    </div>
-    <div class='card-body'> \
-      <p class='card-text'>${element.name}</p>  \
-    </div> \
-    <button class='btn btn-primary'>RUN</button> \
-  </div>  \
-</div> `;
-  emulatorList.innerHTML = emulatorList.innerHTML + card;
-});
-
-jsonResult.emulators.emulator.forEach((element, index) => {
-  var t = document.getElementById("button" + index);
-  t.addEventListener("click", () => {
-    ipcRenderer.send("emulatorClick", element);
-  });
-});
-*/
