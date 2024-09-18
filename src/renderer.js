@@ -10,7 +10,6 @@ var emulatorsXML = fs.readFileSync(emulatorsFile);
 const parser = new XMLParser.XMLParser();
 const jsonResult = parser.parse(emulatorsXML);
 
-
 // ADD brand buttons
 jsonResult.emulators.brand.forEach((element, index) => {
   const li = document.createElement("li");
@@ -24,7 +23,8 @@ jsonResult.emulators.brand.forEach((element, index) => {
   a.className = "pure-menu-link";
 
   const icon = document.createElement("i");
-  icon.className = "fa fa-home";
+  icon.className = "fa fa-circle-o";
+  icon.dataset.brand = element.name;
 
   a.appendChild(icon);
   a.appendChild(document.createTextNode(` ${element.name}`));
@@ -32,16 +32,16 @@ jsonResult.emulators.brand.forEach((element, index) => {
   document.getElementById("brandMenu").appendChild(li);
 });
 
-
 // First Brand Selected when open dashboard
-const firstBrand = jsonResult.emulators.brand[0].name
+const firstBrand = jsonResult.emulators.brand[0].name;
 const menuItem = document.querySelector(`li[data-brand='${firstBrand}']`);
 menuItem.classList.add("pure-menu-selected-background");
+const menuIcon = document.querySelector(`i[data-brand='${firstBrand}']`);
+menuIcon.classList.remove("fa-circle-o");
+menuIcon.classList.add("fa-circle");
+
 const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == firstBrand);
-doTiles(machineBrand)
-
-
-
+doTiles(machineBrand);
 
 // ADD CLICK EVENT TO BRAND BUTTONS
 jsonResult.emulators.brand.forEach((element, index) => {
@@ -55,9 +55,20 @@ jsonResult.emulators.brand.forEach((element, index) => {
     var previous = document.querySelector(".pure-menu-selected-background");
     if (previous) previous.classList.remove("pure-menu-selected-background");
 
+    var previousIcon = document.querySelector(".fa-circle");
+    if (previousIcon) {
+      previousIcon.classList.remove("fa-circle");
+      previousIcon.classList.add("fa-circle-o");
+    }
+
     //Add selected-class to selected button
     const menuItem = document.querySelector(`li[data-brand='${selectedBrand}']`);
     menuItem.classList.add("pure-menu-selected-background");
+
+    //Change selected icon
+    const menuIcon = document.querySelector(`i[data-brand='${selectedBrand}']`);
+    menuIcon.classList.remove("fa-circle-o");
+    menuIcon.classList.add("fa-circle");
 
     //Select brand and do Tiles
     const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectedBrand);
@@ -70,12 +81,15 @@ function doTiles(brand) {
   content.innerHTML = "";
 
   brand.emulator.forEach((element, index) => {
+
+    const image = (element.image ? `./screen/${element.image}` : `./screen/${element.type}_not_found.png`)
+
     const card = `<div class="pure-u-sm-1-2 pure-u-md-1-3 card" style='position:relative'>
-                    <img src="https://via.placeholder.com/300x250" class="pure-img" alt="Image Placeholder">
+                    <img src="${image}" class="pure-img img-border">
                     <h4>${element.name}</h4>
                     <p>${element.desc}</p>
                     <div class="icons" style=''>
-                      <i class="fa fa-star-o"></i>
+                      <i class="fa fa-star${element.favorite ? " selected" : "-o"}"></i>
                       <i class="fa fa-play"></i>
                       <i class="fa fa-gear"></i>
                       <i class="fa fa-trash"></i>
@@ -83,6 +97,7 @@ function doTiles(brand) {
                   </div>`;
 
     content.innerHTML = content.innerHTML + card;
+    console;
   });
 }
 
