@@ -4,12 +4,11 @@ var path = require("path");
 var XMLParser = require("fast-xml-parser");
 const { electron } = require("process");
 
-//Parsing XML emulators File
-var emulatorsFile = path.join(__dirname, ".", "emulators.xml");
-var emulatorsXML = fs.readFileSync(emulatorsFile);
-const parser = new XMLParser.XMLParser();
-const jsonResult = parser.parse(emulatorsXML);
-console.log(JSON.stringify(jsonResult))
+var emulatorsFile = path.join(__dirname, ".", "emulators.json");
+var jsonFile = fs.readFileSync(emulatorsFile)
+var jsonResult = JSON.parse(jsonFile)
+
+console.log(jsonResult)
 
 jsonResult.emulators.brand.forEach((element, index) => {
   var menu = document.getElementById("brandMenu");
@@ -65,13 +64,12 @@ function doTiles(brandName) {
 
   machineBrand.emulator.forEach((element, index) => {
     const image = element.image ? `./screen/${element.image}` : `./screen/${element.type}_not_found.png`;
-
     const card = `<div class="pure-u-sm-1-2 pure-u-md-1-3 card" style='position:relative'>
                     <img src="${image}" class="pure-img img-border">
                     <h4>${element.name}</h4>
                     <p>${element.desc}</p>
                     <div class="icons" style=''>
-                      <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
+                      <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite=='true' ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
                       <i onclick='play(event)' class="btn-play fa fa-play"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
                       <i onclick='config()' class="btn-config fa fa-gear"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
                       <i onclick='remove()' class="btn-remove fa fa-trash"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
@@ -96,22 +94,15 @@ function favorite(event) {
   const name = element.dataset.name;
   const favorite = element.dataset.favorite;
   const emulator = findEmulator(brand, name);
-  emulator.favorite = true;
+  console.log(favorite=='true')
+  emulator.favorite = (favorite == 'true' ? 'false' : 'true')
 
-  const builder = new XMLParser.XMLBuilder({
-    ignoreAttributes: false,
-    attributeNamePrefix: "", // Para manter os atributos como estavam no XML original
-    format: true, // Adiciona indentação no XML
-  });
-  const updatedXML = builder.build(jsonResult);
 
-  console.log(updatedXML)
 
-  
-  const originalName = path.join(__dirname, ".", "emulators.xml");
-  const oldName = path.join(__dirname, ".", "emulators_old.xml");
+  const originalName = path.join(__dirname, ".", "emulators.json");
+  const oldName = path.join(__dirname, ".", "emulators_old.json");
   fs.renameSync(originalName,oldName )
-  fs.writeFileSync(originalName, updatedXML);
+  fs.writeFileSync(originalName, JSON.stringify(jsonResult,null, 2));
   
 }
 

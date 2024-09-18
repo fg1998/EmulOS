@@ -17,7 +17,7 @@
             "name": "ZX Spectrum",
             "desc": "Color, 48Kb",
             "type": "sinclair",
-            "favorite": "false",
+            "favorite": "true",
             "image": "spectrum.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine 48k --fullscreen"

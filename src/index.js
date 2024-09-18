@@ -8,7 +8,7 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
-// HOT RELOAD
+ //HOT RELOAD
 try {
   require('electron-reloader')(module)
 } catch (_) {}
