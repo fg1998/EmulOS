@@ -8,21 +8,7 @@ var emulatorsFile = path.join(__dirname, ".", "emulators.json");
 var jsonFile = fs.readFileSync(emulatorsFile);
 var jsonResult = JSON.parse(jsonFile);
 
-
-var peido = getFavoriteEmulators(jsonResult)
-console.log(peido)
-
-jsonResult.emulators.brand.forEach((element, index) => {
-  var menu = document.getElementById("brandMenu");
-  menu.innerHTML =
-    menu.innerHTML +
-    `<li class="pure-menu-item" data-brand="${element.name}"> \
-                        <a href="#" data-brand="${element.name}" onclick='selectBrand(event)' class="pure-menu-link"> \
-                          <i class="fa fa-circle-o"  data-brand="${element.name}"></i> \
-                          ${element.name} \
-                        </a> \
-                      </li>`;
-});
+addItensToLateralMenu();
 
 // Lateral Menu (brand) Click
 function selectBrand(event) {
@@ -48,9 +34,11 @@ function selectBrand(event) {
   menuIcon.classList.remove("fa-circle-o");
   menuIcon.classList.add("fa-circle");
 
-  const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand);
-
-  doTiles(machineBrand);
+  if (selectBrand == "favorites") {
+    doTiles("favorites", getFavoriteEmulators());
+  } else {
+    doTiles(selectBrand, jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator);
+  }
 }
 
 //View itens from the first brand when dashboard is loaded
@@ -60,25 +48,27 @@ menuItem.classList.add("pure-menu-selected-background");
 const menuIcon = document.querySelector(`i[data-brand='${firstBrand}']`);
 menuIcon.classList.remove("fa-circle-o");
 menuIcon.classList.add("fa-circle");
-const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == firstBrand);
-doTiles(machineBrand);
+const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == firstBrand).emulator;
+doTiles(firstBrand, machineBrand);
 
-function doTiles(machineBrand) {
+// DRAW EMULATOR TILES (MAIN CONTENT)
+function doTiles(brandName, machineBrand) {
+  console.log(machineBrand)
   //const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == brandName);
   const content = document.getElementById("content");
   content.innerHTML = "";
 
-  machineBrand.emulator.forEach((element, index) => {
+  machineBrand.forEach((element, index) => {
     const image = element.image ? `./screen/${element.image}` : `./screen/${element.type}_not_found.png`;
     const card = `<div class="pure-u-sm-1-2 pure-u-md-1-3 card" style='position:relative'>
                     <img src="${image}" class="pure-img img-border">
                     <h4>${element.name}</h4>
                     <p>${element.desc}</p>
                     <div class="icons" style=''>
-                      <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite == "true" ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
-                      <i onclick='play(event)' class="btn-play fa fa-play"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
-                      <i onclick='config()' class="btn-config fa fa-gear"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
-                      <i onclick='remove()' class="btn-remove fa fa-trash"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
+                      <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite == "true" ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${brandName}' data-name='${element.name}'></i>
+                      <i onclick='play(event)' class="btn-play fa fa-play"  data-brand='${brandName}' data-name='${element.name}'></i>
+                      <i onclick='config()' class="btn-config fa fa-gear"  data-brand='${brandName}' data-name='${element.name}'></i>
+                      <i onclick='remove()' class="btn-remove fa fa-trash"  data-brand='${brandName}' data-name='${element.name}'></i>
                     </div>
                   </div>`;
 
@@ -108,8 +98,9 @@ function favorite(event) {
   fs.renameSync(originalName, oldName);
   fs.writeFileSync(originalName, JSON.stringify(jsonResult, null, 2));
 
-  const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand);
-  doTiles(machineBrand);
+  const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator;
+
+  doTiles(selectBrand, machineBrand);
 }
 
 function findEmulator(brandName, emulatorName) {
@@ -121,11 +112,11 @@ function findEmulator(brandName, emulatorName) {
   return null;
 }
 
-
-function getFavoriteEmulators(data)  {
+function getFavoriteEmulators() {
   const favoriteEmulators = [];
-  data.emulators.brand.forEach(brand => {
-    brand.emulator.forEach(emulator => {
+  data = jsonResult;
+  data.emulators.brand.forEach((brand) => {
+    brand.emulator.forEach((emulator) => {
       if (emulator.favorite === "true" || emulator.favorite === true) {
         favoriteEmulators.push({
           brand: brand.name,
@@ -134,10 +125,44 @@ function getFavoriteEmulators(data)  {
           favorite: emulator.favorite,
           image: emulator.image,
           command: emulator.command,
-          parameter: emulator.parameter
+          parameter: emulator.parameter,
+          type: emulator.type
         });
       }
     });
   });
   return favoriteEmulators;
-};
+}
+
+function addItensToLateralMenu() {
+  //ADD ITENS DO LATERAL MENU (BRANDS)
+  var menu = document.getElementById("brandMenu");
+
+  jsonResult.emulators.brand.forEach((element, index) => {
+    menu.innerHTML =
+      menu.innerHTML +
+      `<li class="pure-menu-item" data-brand="${element.name}"> \
+                        <a href="#" data-brand="${element.name}" onclick='selectBrand(event)' class="pure-menu-link"> \
+                          <i class="fa fa-circle-o"  data-brand="${element.name}"></i> \
+                          ${element.name} \
+                        </a> \
+                      </li>`;
+  });
+
+  //ADD SEPARATOR
+  menu.innerHTML =
+    menu.innerHTML +
+    `<li class="pure-menu-item"> \
+                    <span class='separator'>&nbsp;</span>
+                  </li>`;
+
+  //ADD FAVORITES
+  menu.innerHTML =
+    menu.innerHTML +
+    `<li class="pure-menu-item" data-brand="favorites"> \
+                        <a href="#" data-brand="favorites" onclick='selectBrand(event)' class="pure-menu-link"> \
+                          <i class="fa fa-circle-o"  data-brand="favorites"></i> \
+                          Favorites \
+                        </a> \
+                      </li>`;
+}

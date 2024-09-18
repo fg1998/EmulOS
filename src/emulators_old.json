@@ -102,7 +102,7 @@
             "name": "Commodore 64",
             "desc": "Full Color 8Bit computer, 64Kb Ram",
             "type": "commodore",
-            "favorite": "false",
+            "favorite": "true",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -110,7 +110,7 @@
             "name": "Commodore 128",
             "desc": "Full Color 8Bit computer, 128Kb Ram",
             "type": "commodore",
-            "favorite": false,
+            "favorite": "false",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -126,7 +126,7 @@
             "name": "Amiga 1200",
             "desc": "16 Bit computer, AGA graphics",
             "type": "commodore",
-            "favorite": false,
+            "favorite": "true",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
@@ -147,7 +147,7 @@
             "name": "Expert",
             "desc": "Brazilian MSX 1.0",
             "type": "msx",
-            "favorite": false,
+            "favorite": "true",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
