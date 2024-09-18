@@ -22,6 +22,7 @@ jsonResult.emulators.brand.forEach((element, index) => {
                       </li>`;
 });
 
+
 // Lateral Menu (brand) Click
 function selectBrand(event) {
   const element = event.target;
@@ -49,6 +50,8 @@ function selectBrand(event) {
   doTiles(brand);
 }
 
+
+//View itens from the first brand when dashboard is loaded
 const firstBrand = jsonResult.emulators.brand[0].name;
 const menuItem = document.querySelector(`li[data-brand='${firstBrand}']`);
 menuItem.classList.add("pure-menu-selected-background");
@@ -57,7 +60,10 @@ menuIcon.classList.remove("fa-circle-o");
 menuIcon.classList.add("fa-circle");
 doTiles(firstBrand);
 
+
+
 function doTiles(brandName) {
+
   const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == brandName);
   const content = document.getElementById("content");
   content.innerHTML = "";
@@ -97,12 +103,11 @@ function favorite(event) {
   console.log(favorite=='true')
   emulator.favorite = (favorite == 'true' ? 'false' : 'true')
 
-
-
   const originalName = path.join(__dirname, ".", "emulators.json");
   const oldName = path.join(__dirname, ".", "emulators_old.json");
   fs.renameSync(originalName,oldName )
   fs.writeFileSync(originalName, JSON.stringify(jsonResult,null, 2));
+  doTiles(brand)
   
 }
 

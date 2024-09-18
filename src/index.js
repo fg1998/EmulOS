@@ -10,7 +10,9 @@ if (require("electron-squirrel-startup")) {
 
  //HOT RELOAD
 try {
-  require('electron-reloader')(module)
+  require('electron-reloader')(module, {
+    ignore:['src/emulators*.json']
+  })
 } catch (_) {}
 
 const createWindow = () => {
