@@ -5,10 +5,12 @@ var XMLParser = require("fast-xml-parser");
 const { electron } = require("process");
 
 var emulatorsFile = path.join(__dirname, ".", "emulators.json");
-var jsonFile = fs.readFileSync(emulatorsFile)
-var jsonResult = JSON.parse(jsonFile)
+var jsonFile = fs.readFileSync(emulatorsFile);
+var jsonResult = JSON.parse(jsonFile);
 
-console.log(jsonResult)
+
+var peido = getFavoriteEmulators(jsonResult)
+console.log(peido)
 
 jsonResult.emulators.brand.forEach((element, index) => {
   var menu = document.getElementById("brandMenu");
@@ -22,11 +24,10 @@ jsonResult.emulators.brand.forEach((element, index) => {
                       </li>`;
 });
 
-
 // Lateral Menu (brand) Click
 function selectBrand(event) {
   const element = event.target;
-  const brand = element.dataset.brand;
+  const selectBrand = element.dataset.brand;
 
   //Remove pure-menu-selected-background from previous selected brand
   var previous = document.querySelector(".pure-menu-selected-background");
@@ -39,17 +40,18 @@ function selectBrand(event) {
   }
 
   //Add selected-class to selected button
-  const menuItem = document.querySelector(`li[data-brand='${brand}']`);
+  const menuItem = document.querySelector(`li[data-brand='${selectBrand}']`);
   menuItem.classList.add("pure-menu-selected-background");
 
   //Change selected icon
-  const menuIcon = document.querySelector(`i[data-brand='${brand}']`);
+  const menuIcon = document.querySelector(`i[data-brand='${selectBrand}']`);
   menuIcon.classList.remove("fa-circle-o");
   menuIcon.classList.add("fa-circle");
 
-  doTiles(brand);
-}
+  const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand);
 
+  doTiles(machineBrand);
+}
 
 //View itens from the first brand when dashboard is loaded
 const firstBrand = jsonResult.emulators.brand[0].name;
@@ -58,13 +60,11 @@ menuItem.classList.add("pure-menu-selected-background");
 const menuIcon = document.querySelector(`i[data-brand='${firstBrand}']`);
 menuIcon.classList.remove("fa-circle-o");
 menuIcon.classList.add("fa-circle");
-doTiles(firstBrand);
+const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == firstBrand);
+doTiles(machineBrand);
 
-
-
-function doTiles(brandName) {
-
-  const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == brandName);
+function doTiles(machineBrand) {
+  //const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == brandName);
   const content = document.getElementById("content");
   content.innerHTML = "";
 
@@ -75,7 +75,7 @@ function doTiles(brandName) {
                     <h4>${element.name}</h4>
                     <p>${element.desc}</p>
                     <div class="icons" style=''>
-                      <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite=='true' ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
+                      <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite == "true" ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
                       <i onclick='play(event)' class="btn-play fa fa-play"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
                       <i onclick='config()' class="btn-config fa fa-gear"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
                       <i onclick='remove()' class="btn-remove fa fa-trash"  data-brand='${machineBrand.name}' data-name='${element.name}'></i>
@@ -96,19 +96,20 @@ function play(event) {
 
 function favorite(event) {
   const element = event.target;
-  const brand = element.dataset.brand;
+  const selectBrand = element.dataset.brand;
   const name = element.dataset.name;
   const favorite = element.dataset.favorite;
-  const emulator = findEmulator(brand, name);
-  console.log(favorite=='true')
-  emulator.favorite = (favorite == 'true' ? 'false' : 'true')
+  const emulator = findEmulator(selectBrand, name);
+
+  emulator.favorite = favorite == "true" ? "false" : "true";
 
   const originalName = path.join(__dirname, ".", "emulators.json");
   const oldName = path.join(__dirname, ".", "emulators_old.json");
-  fs.renameSync(originalName,oldName )
-  fs.writeFileSync(originalName, JSON.stringify(jsonResult,null, 2));
-  doTiles(brand)
-  
+  fs.renameSync(originalName, oldName);
+  fs.writeFileSync(originalName, JSON.stringify(jsonResult, null, 2));
+
+  const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand);
+  doTiles(machineBrand);
 }
 
 function findEmulator(brandName, emulatorName) {
@@ -119,3 +120,24 @@ function findEmulator(brandName, emulatorName) {
   }
   return null;
 }
+
+
+function getFavoriteEmulators(data)  {
+  const favoriteEmulators = [];
+  data.emulators.brand.forEach(brand => {
+    brand.emulator.forEach(emulator => {
+      if (emulator.favorite === "true" || emulator.favorite === true) {
+        favoriteEmulators.push({
+          brand: brand.name,
+          name: emulator.name,
+          desc: emulator.desc,
+          favorite: emulator.favorite,
+          image: emulator.image,
+          command: emulator.command,
+          parameter: emulator.parameter
+        });
+      }
+    });
+  });
+  return favoriteEmulators;
+};

@@ -44,7 +44,7 @@
             "name": "Microdigital TK90X",
             "desc": "Brasilian Clone",
             "type": "sinclair",
-            "favorite": true,
+            "favorite": "true",
             "image": "tk90x.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine TK90X --fullscreen"
@@ -53,7 +53,7 @@
             "name": "Sam Coupe",
             "desc": "Miles Gordon Spectrum on steroids",
             "type": "Sinclair",
-            "favorite": "true",
+            "favorite": "false",
             "image": "sam.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine Sam --fullscreen"
@@ -102,7 +102,7 @@
             "name": "Commodore 64",
             "desc": "Full Color 8Bit computer, 64Kb Ram",
             "type": "commodore",
-            "favorite": false,
+            "favorite": "false",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -110,7 +110,7 @@
             "name": "Commodore 128",
             "desc": "Full Color 8Bit computer, 128Kb Ram",
             "type": "commodore",
-            "favorite": false,
+            "favorite": "true",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -139,7 +139,7 @@
             "name": "HotBit",
             "desc": "Brazilian MSX 1.0",
             "type": "msx",
-            "favorite": false,
+            "favorite": "true",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
