@@ -15,6 +15,7 @@ function selectBrand(event) {
   const element = event.target;
   const selectBrand = element.dataset.brand;
 
+
   //Remove pure-menu-selected-background from previous selected brand
   var previous = document.querySelector(".pure-menu-selected-background");
   if (previous) previous.classList.remove("pure-menu-selected-background");
@@ -24,6 +25,13 @@ function selectBrand(event) {
     previousIcon.classList.remove("fa-circle");
     previousIcon.classList.add("fa-circle-o");
   }
+  var previousIconFavorite = document.querySelector('.fa-star')
+  console.log(previousIconFavorite)
+  //if(previousIconFavorite)
+ // {
+ //   previousIcon.classList.remove("fa-star");
+ //   previousIcon.classList.add("fa-star-o")
+ // }
 
   //Add selected-class to selected button
   const menuItem = document.querySelector(`li[data-brand='${selectBrand}']`);
@@ -31,8 +39,8 @@ function selectBrand(event) {
 
   //Change selected icon
   const menuIcon = document.querySelector(`i[data-brand='${selectBrand}']`);
-  menuIcon.classList.remove("fa-circle-o");
-  menuIcon.classList.add("fa-circle");
+  menuIcon.classList.remove((selectBrand =='favorites' ? 'fa-star-o' : "fa-circle-o"));
+  menuIcon.classList.add((selectBrand == 'favorites' ? 'fa-star' : "fa-circle"));
 
   if (selectBrand == "favorites") {
     doTiles("favorites", getFavoriteEmulators());
@@ -53,7 +61,7 @@ doTiles(firstBrand, machineBrand);
 
 // DRAW EMULATOR TILES (MAIN CONTENT)
 function doTiles(brandName, machineBrand) {
-  console.log(machineBrand)
+
   //const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == brandName);
   const content = document.getElementById("content");
   content.innerHTML = "";
@@ -161,7 +169,7 @@ function addItensToLateralMenu() {
     menu.innerHTML +
     `<li class="pure-menu-item" data-brand="favorites"> \
                         <a href="#" data-brand="favorites" onclick='selectBrand(event)' class="pure-menu-link"> \
-                          <i class="fa fa-circle-o"  data-brand="favorites"></i> \
+                          <i class="fa fa-star-o"  data-brand="favorites"></i> \
                           Favorites \
                         </a> \
                       </li>`;
