@@ -63,8 +63,8 @@ app.on("window-all-closed", () => {
 function createConfigWindow(content) { 
   console.log(content)
   configWindow = new BrowserWindow({ 
-    width: 500, 
-    height: 700, 
+    width: 700, 
+    height: 400, 
     modal: true, 
     show: false, 
     parent: mainWindow, // Make sure to add parent window here 

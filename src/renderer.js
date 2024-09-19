@@ -24,11 +24,10 @@ function selectBrand(event) {
     previousIcon.classList.remove("fa-circle");
     previousIcon.classList.add("fa-circle-o");
   }
-  var previousIconFavorite = document.querySelector('.fa-star.favicon')
-  if(previousIconFavorite)
-  {
+  var previousIconFavorite = document.querySelector(".fa-star.favicon");
+  if (previousIconFavorite) {
     previousIconFavorite.classList.remove("fa-star");
-    previousIconFavorite.classList.add("fa-star-o")
+    previousIconFavorite.classList.add("fa-star-o");
   }
 
   //Add selected-class to selected button
@@ -37,8 +36,8 @@ function selectBrand(event) {
 
   //Change selected icon
   const menuIcon = document.querySelector(`i[data-brand='${selectBrand}']`);
-  menuIcon.classList.remove((selectBrand =='favorites' ? 'fa-star-o' : "fa-circle-o"));
-  menuIcon.classList.add((selectBrand == 'favorites' ? 'fa-star' : "fa-circle"));
+  menuIcon.classList.remove(selectBrand == "favorites" ? "fa-star-o" : "fa-circle-o");
+  menuIcon.classList.add(selectBrand == "favorites" ? "fa-star" : "fa-circle");
 
   if (selectBrand == "favorites") {
     doTiles("favorites", getFavoriteEmulators());
@@ -59,7 +58,6 @@ doTiles(firstBrand, machineBrand);
 
 // DRAW EMULATOR TILES (MAIN CONTENT)
 function doTiles(brandName, machineBrand) {
-
   //const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == brandName);
   const content = document.getElementById("content");
   content.innerHTML = "";
@@ -71,8 +69,8 @@ function doTiles(brandName, machineBrand) {
                     <h4>${element.name}</h4>
                     <p>${element.desc}</p>
                     <div class="icons" style=''>
-                      <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite == "true" ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${brandName}' data-name='${element.name}'></i>
-                      <i onclick='play(event)' class="btn-play fa fa-play"  data-brand='${brandName}' data-name='${element.name}'></i>
+                      <i onclick='play(event)' class="btn-play fa fa-play"  data-brand='${brandName}' data-name='${element.name}'></i>   
+                      <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite == "true" ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${brandName}' data-name='${element.name}'></i>      
                       <i onclick='config(event)' class="btn-config fa fa-gear"  data-brand='${brandName}' data-name='${element.name}'></i>
                       <i onclick='remove()' class="btn-remove fa fa-trash"  data-brand='${brandName}' data-name='${element.name}'></i>
                     </div>
@@ -83,7 +81,7 @@ function doTiles(brandName, machineBrand) {
 }
 
 function config(event) {
-  console.log('config')
+  console.log("config");
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
@@ -120,16 +118,6 @@ function favorite(event) {
 
 
 
-
-function findEmulator(brandName, emulatorName) {
-  const brand = jsonResult.emulators.brand.find((b) => b.name === brandName);
-  if (brand) {
-    var ret = brand.emulator.find((e) => e.name === emulatorName);
-    return ret;
-  }
-  return null;
-}
-
 function getFavoriteEmulators() {
   const favoriteEmulators = [];
   data = jsonResult;
@@ -144,7 +132,7 @@ function getFavoriteEmulators() {
           image: emulator.image,
           command: emulator.command,
           parameter: emulator.parameter,
-          type: emulator.type
+          type: emulator.type,
         });
       }
     });

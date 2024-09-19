@@ -6,7 +6,7 @@
         "emulator": [
           {
             "name": "Apple ][",
-            "desc":"Second Apple PC",
+            "desc": "Second Apple PC",
             "type": "apple",
             "favorite": "false",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
@@ -14,10 +14,10 @@
           },
           {
             "name": "Original Macintosh",
-            "desc":"Apple's first Mac",
+            "desc": "Apple's first Mac",
             "type": "apple",
             "favorite": "false",
-            "image" : "mac.png",
+            "image": "mac.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
@@ -124,7 +124,7 @@
             "name": "PET",
             "desc": "First Commodore computer",
             "type": "commodore",
-            "favorite": false,
+            "favorite": "false",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -151,7 +151,7 @@
             "desc": "16 Bit computer",
             "type": "commodore",
             "favorite": false,
-            "image":"a500.png",
+            "image": "a500.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -160,7 +160,7 @@
             "desc": "16 Bit computer, AGA graphics",
             "type": "commodore",
             "favorite": "true",
-            "image" : "a1200.png",
+            "image": "a1200.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }

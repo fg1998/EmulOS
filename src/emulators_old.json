@@ -2,6 +2,28 @@
   "emulators": {
     "brand": [
       {
+        "name": "Apple",
+        "emulator": [
+          {
+            "name": "Apple ][",
+            "desc": "Second Apple PC",
+            "type": "apple",
+            "favorite": "false",
+            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+            "parameter": "--machine ACE --fullscreen"
+          },
+          {
+            "name": "Original Macintosh",
+            "desc": "Apple's first Mac",
+            "type": "apple",
+            "favorite": "false",
+            "image": "mac.png",
+            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+            "parameter": "--machine ACE --fullscreen"
+          }
+        ]
+      },
+      {
         "name": "Sinclair",
         "emulator": [
           {
@@ -35,7 +57,7 @@
             "name": "Spectrum +3",
             "desc": "ROM 4.0",
             "type": "sinclair",
-            "favorite": "true",
+            "favorite": "false",
             "image": "plus3.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine P340 --fullscreen"
@@ -99,10 +121,19 @@
         "name": "Commodore",
         "emulator": [
           {
+            "name": "PET",
+            "desc": "First Commodore computer",
+            "type": "commodore",
+            "favorite": "true",
+            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+            "parameter": "--machine ACE --fullscreen"
+          },
+          {
             "name": "Commodore 64",
             "desc": "Full Color 8Bit computer, 64Kb Ram",
             "type": "commodore",
             "favorite": "true",
+            "image": "c64.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -111,6 +142,7 @@
             "desc": "Full Color 8Bit computer, 128Kb Ram",
             "type": "commodore",
             "favorite": "false",
+            "image": "c128.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -119,6 +151,7 @@
             "desc": "16 Bit computer",
             "type": "commodore",
             "favorite": false,
+            "image": "a500.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
@@ -127,6 +160,7 @@
             "desc": "16 Bit computer, AGA graphics",
             "type": "commodore",
             "favorite": "true",
+            "image": "a1200.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
