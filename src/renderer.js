@@ -26,7 +26,7 @@ function selectBrand(event) {
     previousIcon.classList.add("fa-circle-o");
   }
   var previousIconFavorite = document.querySelector('.fa-star')
-  console.log(previousIconFavorite)
+
   //if(previousIconFavorite)
  // {
  //   previousIcon.classList.remove("fa-star");

@@ -35,7 +35,7 @@
             "name": "Spectrum +3",
             "desc": "ROM 4.0",
             "type": "sinclair",
-            "favorite": true,
+            "favorite": "true",
             "image": "plus3.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine P340 --fullscreen"
