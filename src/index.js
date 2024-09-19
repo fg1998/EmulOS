@@ -15,9 +15,11 @@ try {
   })
 } catch (_) {}
 
+let mainWindow;
+
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+ mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,
     webPreferences: {
@@ -29,9 +31,7 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "index.html"));
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  mainWindow.maximize()
 };
 
 // This method will be called when Electron has finished
@@ -55,6 +55,44 @@ app.whenReady().then(() => {
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
+  }
+});
+
+
+
+function createConfigWindow(content) { 
+  console.log(content)
+  configWindow = new BrowserWindow({ 
+    width: 500, 
+    height: 700, 
+    modal: true, 
+    show: false, 
+    parent: mainWindow, // Make sure to add parent window here 
+  
+    // Make sure to add webPreferences with below configuration 
+    webPreferences: { 
+      nodeIntegration: true, 
+      contextIsolation: false, 
+      enableRemoteModule: true, 
+    }, 
+  }); 
+  
+  // Child window loads settings.html file 
+  configWindow.loadFile(path.join(__dirname, "config.html"), {query: {"data": JSON.stringify(content)}}); 
+  
+  configWindow.once("ready-to-show", () => { 
+    configWindow.show(); 
+  }); 
+
+} 
+
+ipcMain.on('configClick', (event, content) => {
+  createConfigWindow(content);
+})
+
+ipcMain.on('close-child-window', () => {
+  if (configWindow) {
+    configWindow.close();
   }
 });
 

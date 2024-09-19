@@ -10,11 +10,10 @@ var jsonResult = JSON.parse(jsonFile);
 
 addItensToLateralMenu();
 
-// Lateral Menu (brand) Click
+// Lateral Menu (brand) Click events
 function selectBrand(event) {
   const element = event.target;
   const selectBrand = element.dataset.brand;
-
 
   //Remove pure-menu-selected-background from previous selected brand
   var previous = document.querySelector(".pure-menu-selected-background");
@@ -25,13 +24,12 @@ function selectBrand(event) {
     previousIcon.classList.remove("fa-circle");
     previousIcon.classList.add("fa-circle-o");
   }
-  var previousIconFavorite = document.querySelector('.fa-star')
-
-  //if(previousIconFavorite)
- // {
- //   previousIcon.classList.remove("fa-star");
- //   previousIcon.classList.add("fa-star-o")
- // }
+  var previousIconFavorite = document.querySelector('.fa-star.favicon')
+  if(previousIconFavorite)
+  {
+    previousIconFavorite.classList.remove("fa-star");
+    previousIconFavorite.classList.add("fa-star-o")
+  }
 
   //Add selected-class to selected button
   const menuItem = document.querySelector(`li[data-brand='${selectBrand}']`);
@@ -75,13 +73,22 @@ function doTiles(brandName, machineBrand) {
                     <div class="icons" style=''>
                       <i onclick='favorite(event)' class="btn-favorite fa fa-star${element.favorite == "true" ? " selected" : "-o"}" data-favorite='${element.favorite}'  data-brand='${brandName}' data-name='${element.name}'></i>
                       <i onclick='play(event)' class="btn-play fa fa-play"  data-brand='${brandName}' data-name='${element.name}'></i>
-                      <i onclick='config()' class="btn-config fa fa-gear"  data-brand='${brandName}' data-name='${element.name}'></i>
+                      <i onclick='config(event)' class="btn-config fa fa-gear"  data-brand='${brandName}' data-name='${element.name}'></i>
                       <i onclick='remove()' class="btn-remove fa fa-trash"  data-brand='${brandName}' data-name='${element.name}'></i>
                     </div>
                   </div>`;
 
     content.innerHTML = content.innerHTML + card;
   });
+}
+
+function config(event) {
+  console.log('config')
+  const element = event.target;
+  const brand = element.dataset.brand;
+  const name = element.dataset.name;
+  const emulator = findEmulator(brand, name);
+  ipcRenderer.send("configClick", emulator);
 }
 
 function play(event) {
@@ -110,6 +117,9 @@ function favorite(event) {
 
   doTiles(selectBrand, machineBrand);
 }
+
+
+
 
 function findEmulator(brandName, emulatorName) {
   const brand = jsonResult.emulators.brand.find((b) => b.name === brandName);
@@ -169,7 +179,7 @@ function addItensToLateralMenu() {
     menu.innerHTML +
     `<li class="pure-menu-item" data-brand="favorites"> \
                         <a href="#" data-brand="favorites" onclick='selectBrand(event)' class="pure-menu-link"> \
-                          <i class="fa fa-star-o"  data-brand="favorites"></i> \
+                          <i class="fa fa-star-o favicon"  data-brand="favorites"></i> \
                           Favorites \
                         </a> \
                       </li>`;
