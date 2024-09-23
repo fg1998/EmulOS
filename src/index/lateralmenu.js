@@ -35,35 +35,6 @@ export function addItensToLateralMenu(jsonResult) {
                           </a>`;
   favorites.addEventListener("click", selectBrand);
   menu.appendChild(favorites);
-
-  /*
-  //ADD SEPARATOR
-  menu.innerHTML =
-    menu.innerHTML +
-    `<li class="pure-menu-item"> \
-                      <span class='separator'>&nbsp;</span>
-                    </li>`;
-
-  //ADD FAVORITES
-  menu.innerHTML =
-    menu.innerHTML +
-    `<li class="pure-menu-item" data-brand="favorites"> \
-                          <a href="#" data-brand="favorites" onclick='selectBrand(event)' class="pure-menu-link"> \
-                            <i class="fa fa-star favicon"  data-brand="favorites"></i> \
-                            Favorites \
-                          </a> \
-                        </li>`;
-
-  //ADD Settings
-  menu.innerHTML =
-    menu.innerHTML +
-    `<li class="pure-menu-item" data-brand="settings"> \
-                        <a href="#" data-brand="favorites" onclick='selectBrand(event)' class="pure-menu-link"> \
-                          <i class="fa fa-wrench favicon"  data-brand="favorites"></i> \
-                          Settings \
-                        </a> \
-                      </li>`;
-                      */
 }
 
 // Lateral Menu (brand) Click events

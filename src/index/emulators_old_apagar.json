@@ -47,7 +47,7 @@
             "name": "ZX81",
             "desc": "Second Sinclair computer, black and white, 48Kb",
             "type": "sinclair",
-            "favorite": "true",
+            "favorite": "false",
             "image": "zx81.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine zx81 --fullscreen"

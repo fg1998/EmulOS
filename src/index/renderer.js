@@ -21,3 +21,12 @@ const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == fi
 //FROM maincontent.js
 doTiles(firstBrand, machineBrand);
 
+ipcRenderer.on('reload-tiles', function (evt, param) {
+    var jsonResult = getConfig()
+
+    let selectBrand = param.brand
+
+    doTiles(param.brand, jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator);
+    
+    
+});

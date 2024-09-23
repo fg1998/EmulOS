@@ -20,7 +20,7 @@
 
           <div class="pure-u-1-4"><label>Name</label></div>
           <div class="pure-u-3-4"><input type="text" class="pure-input-1" id="name" /></div>
-
+          <input type="hidden" id="originalName">
           <div class="pure-u-1-4"><label>Desc</label></div>
           <div class="pure-u-3-4"><input type="text" class="pure-input-1" id="desc" /></div>
 
@@ -34,12 +34,11 @@
     </form>
     <div class="pure-g">
       <duv class="pure-u-1-4"></duv>
-      <div class="pure-u-1-4"><button class="pure-button" onclick="goToFirstWindow()">Cancel</button></div>
-      <div class="pure-u-1-4"><button class="pure-button" onclick="save()">Save</button></div>
+      <div class="pure-u-1-4"><button class="pure-button" id="btnCancel">Cancel</button></div>
+      <div class="pure-u-1-4"><button class="pure-button" id="btnSave">Save</button></div>
     </div>
 
-    <script src="../util.js"></script>
-    <script src="config.js"></script>
+    <script type="module" src="config.js"></script>
     <script></script>
   </body>
 </html>

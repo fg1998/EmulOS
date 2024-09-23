@@ -90,9 +90,10 @@ ipcMain.on('configClick', (event, content) => {
   createConfigWindow(content);
 })
 
-ipcMain.on('close-child-window', () => {
+ipcMain.on('close-child-window', (event, param) => {
   if (configWindow) {
     configWindow.close();
+    mainWindow.webContents.send('reload-tiles', param);
   }
 });
 

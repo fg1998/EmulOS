@@ -1,20 +1,37 @@
 {
+  "systems": [
+    {
+      "emulator": "ZEsarUX",
+      "path": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
+      "desc": "A complete Sinclair emulator, includes ZX81, Spectrum, russian and brazilian clones and even Zx Spectrum Next"
+    },
+    {
+      "Emulator": "Vice",
+      "path": "/Applications/Vice.app/Contents/macOS/vice",
+      "desc": "A 8 bit emulator for 8 bit Commodore Machines, includes C64, C128, VIC20, PET, etc"
+    },
+    {
+      "Emulator": "UAE",
+      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "desc": "Commodore Amiga emulator"
+    }
+  ],
   "emulators": {
     "brand": [
       {
         "name": "Apple",
         "emulator": [
           {
-            "name": "Apple ][",
-            "desc": "Second Apple PC",
+            "name": "Apple ][1",
+            "desc": "Second Apple PCeff",
             "type": "apple",
             "favorite": "false",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
-            "name": "Original Macintosh",
-            "desc": "Apple's first Mac",
+            "name": "Original Macintosh2",
+            "desc": "Apple's first Mac3",
             "type": "apple",
             "favorite": "false",
             "image": "mac.png",
@@ -36,7 +53,7 @@
             "parameter": "--machine zx81 --fullscreen"
           },
           {
-            "name": "ZX Spectrum",
+            "name": "ZX Spectrum 48kb",
             "desc": "Color, 48Kb",
             "type": "sinclair",
             "favorite": "false",
@@ -48,7 +65,7 @@
             "name": "Spectrum 128",
             "desc": "Color, 128Kb",
             "type": "sinclair",
-            "favorite": "true",
+            "favorite": "false",
             "image": "128.png",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine 128k --fullscreen"
@@ -124,7 +141,7 @@
             "name": "PET",
             "desc": "First Commodore computer",
             "type": "commodore",
-            "favorite": "true",
+            "favorite": "false",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },

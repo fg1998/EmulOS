@@ -22,16 +22,16 @@
         "name": "Apple",
         "emulator": [
           {
-            "name": "Apple ][",
-            "desc": "Second Apple PC",
+            "name": "Apple ][1",
+            "desc": "Second Apple PCeff",
             "type": "apple",
             "favorite": "false",
             "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
-            "name": "Original Macintosh",
-            "desc": "Apple's first Mac",
+            "name": "Original Macintosh2",
+            "desc": "Apple's first Mac3",
             "type": "apple",
             "favorite": "false",
             "image": "mac.png",
@@ -44,7 +44,7 @@
         "name": "Sinclair",
         "emulator": [
           {
-            "name": "ZX81",
+            "name": "ZX81 48kb",
             "desc": "Second Sinclair computer, black and white, 48Kb",
             "type": "sinclair",
             "favorite": "false",
@@ -53,7 +53,7 @@
             "parameter": "--machine zx81 --fullscreen"
           },
           {
-            "name": "ZX Spectrum",
+            "name": "ZX Spectrum 48kb",
             "desc": "Color, 48Kb",
             "type": "sinclair",
             "favorite": "false",
