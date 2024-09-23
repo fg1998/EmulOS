@@ -9,11 +9,11 @@ if (require("electron-squirrel-startup")) {
 }
 
  //HOT RELOAD
-try {
-  require('electron-reloader')(module, {
-    ignore:['src/emulators*.json']
-  })
-} catch (_) {}
+//try {
+//  require('electron-reloader')(module, {
+//    ignore:['src/emulators*.json']
+//  })
+//} catch (_) {}
 
 let mainWindow;
 
@@ -99,5 +99,4 @@ ipcMain.on('close-child-window', (event, param) => {
 
 ipcMain.on("playClick", (event, content) => {
   const r = execFile(content.command, content.parameter.split(" "));
-
 });

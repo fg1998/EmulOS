@@ -2,11 +2,14 @@ import { findEmulator, getConfig, saveConfigFile } from "../util.js";
 const { ipcRenderer } = require("electron");
 
 export function doTiles(brandName, machineBrand) {
+ 
   const content = document.getElementById("content");
   content.innerHTML = "";
 
   machineBrand.forEach((element) => {
     const image = element.image ? `../assets/screenshots/${element.image}` : `../assets/screenshots/${element.type}_not_found.png`;
+    const currentBrand = (brandName == 'favorites' ? element.brand : brandName)
+
 
     // Criar o card
     const card = document.createElement("div");
@@ -33,35 +36,35 @@ export function doTiles(brandName, machineBrand) {
     // Criar o ícone Play
     const playIcon = document.createElement("i");
     playIcon.classList.add("btn-play", "fa", "fa-play");
-    playIcon.dataset.brand = brandName;
+    playIcon.dataset.brand = currentBrand;
     playIcon.dataset.name = element.name;
     playIcon.addEventListener("click", play); // Adiciona o evento 'play'
 
     // Criar o ícone Favorite
     const favoriteIcon = document.createElement("i");
-    var tClass = `fa-star${element.favorite == "true" ? "selected" : "-o"}`
-    if(element.favorite == 'true'){
-      favoriteIcon.classList.add('btn-favorite','fa','fa-star','selected')
+    var tClass = `fa-star${element.favorite == "true" ? "selected" : "-o"}`;
+    if (element.favorite == "true") {
+      favoriteIcon.classList.add("btn-favorite", "fa", "fa-star", "selected");
     } else {
-      favoriteIcon.classList.add('btn-favorite','fa','fa-star-o')
+      favoriteIcon.classList.add("btn-favorite", "fa", "fa-star-o");
     }
     //favoriteIcon.classList.add("btn-favorite", "fa", `fa-star${element.favorite == "true" ? " selected" : "-o"}`);
     favoriteIcon.dataset.favorite = element.favorite;
-    favoriteIcon.dataset.brand = brandName;
+    favoriteIcon.dataset.brand = currentBrand;
     favoriteIcon.dataset.name = element.name;
     favoriteIcon.addEventListener("click", favorite); // Adiciona o evento 'favorite'
 
     // Criar o ícone Config
     const configIcon = document.createElement("i");
     configIcon.classList.add("btn-config", "fa", "fa-gear");
-    configIcon.dataset.brand = brandName;
+    configIcon.dataset.brand = currentBrand;
     configIcon.dataset.name = element.name;
     configIcon.addEventListener("click", config); // Adiciona o evento 'config'
 
     // Criar o ícone Remove
     const removeIcon = document.createElement("i");
     removeIcon.classList.add("btn-remove", "fa", "fa-trash");
-    removeIcon.dataset.brand = brandName;
+    removeIcon.dataset.brand = currentBrand;
     removeIcon.dataset.name = element.name;
     removeIcon.addEventListener("click", remove); // Adiciona o evento 'remove'
 

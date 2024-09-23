@@ -22,7 +22,7 @@
         "name": "Apple",
         "emulator": [
           {
-            "name": "Apple ][1",
+            "name": "Apple ][",
             "desc": "Second Apple PCeff",
             "type": "apple",
             "favorite": "false",
@@ -44,7 +44,7 @@
         "name": "Sinclair",
         "emulator": [
           {
-            "name": "ZX81",
+            "name": "ZX81 48kb",
             "desc": "Second Sinclair computer, black and white, 48Kb",
             "type": "sinclair",
             "favorite": "false",
