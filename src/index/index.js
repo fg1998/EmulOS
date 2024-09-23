@@ -8,12 +8,15 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+
+
+
  //HOT RELOAD
-//try {
-//  require('electron-reloader')(module, {
-//    ignore:['src/emulators*.json']
-//  })
-//} catch (_) {}
+try {
+  require('electron-reloader')(module, {
+    ignore:['src/emulators*.json']
+  })
+} catch (_) {}
 
 let mainWindow;
 
