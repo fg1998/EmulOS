@@ -24,14 +24,14 @@
     {
       "emulator": "Virtual Apple",
       "type": "apple2",
-      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "path": "/Applications/Vice.app/Contents/macOS/apple2",
       "desc": "Apple 8 bit emulator",
       "param": ""
     },
     {
       "emulator": "openMSX",
       "type": "msx",
-      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "path": "/Applications/Vice.app/Contents/macOS/openmsx",
       "desc": "MSX emulator",
       "param": ""
     }
@@ -65,7 +65,7 @@
             "name": "ZX81 48kb",
             "desc": "Second Sinclair computer, black and white, 48Kb",
             "type": "sinclair",
-            "favorite": "true",
+            "favorite": "false",
             "image": "zx81.png",
             "parameter": "--machine zx81 --fullscreen"
           },
@@ -128,7 +128,7 @@
           {
             "name": "Jupiter Ace",
             "desc": "Z80 based non-sinclair machine",
-            "type": "commodore",
+            "type": "sinclair",
             "favorite": false,
             "parameter": "--machine ACE --fullscreen"
           },
