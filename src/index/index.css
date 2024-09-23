@@ -1,10 +1,17 @@
 .pure-menu-link:hover {
   background-color: #bbb;
 }
-.pure-menu-selected-background {
-
+.apure-menu-selected-background {
   font-weight: 800;
+}
 
+.apure-menu-selected-background i{
+ color: black;
+}
+
+.pure-menu-selected-background a{
+  font-weight: 800;
+  color: black
 }
 
 .img-border {

@@ -61,10 +61,10 @@ app.on("window-all-closed", () => {
 
 
 function createConfigWindow(content) { 
-  console.log(content)
+
   configWindow = new BrowserWindow({ 
     width: 700, 
-    height: 400, 
+    height: 500, 
     modal: true, 
     show: false, 
     parent: mainWindow, // Make sure to add parent window here 
@@ -78,7 +78,7 @@ function createConfigWindow(content) {
   }); 
   
   // Child window loads settings.html file 
-  configWindow.loadFile(path.join(__dirname, "config.html"), {query: {"data": JSON.stringify(content)}}); 
+  configWindow.loadFile(path.join(__dirname, "../config/config.html"), {query: {"data": JSON.stringify(content)}}); 
   
   configWindow.once("ready-to-show", () => { 
     configWindow.show(); 
@@ -98,5 +98,5 @@ ipcMain.on('close-child-window', () => {
 
 ipcMain.on("playClick", (event, content) => {
   const r = execFile(content.command, content.parameter.split(" "));
-  console.log(r);
+
 });
