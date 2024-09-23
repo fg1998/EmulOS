@@ -101,5 +101,5 @@ ipcMain.on('close-child-window', (event, param) => {
 });
 
 ipcMain.on("playClick", (event, content) => {
-  const r = execFile(content.command, content.parameter.split(" "));
+  const r = execFile(content.system.path, content.parameter.split(" "));
 });

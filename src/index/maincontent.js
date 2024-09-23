@@ -2,14 +2,12 @@ import { findEmulator, getConfig, saveConfigFile } from "../util.js";
 const { ipcRenderer } = require("electron");
 
 export function doTiles(brandName, machineBrand) {
- 
   const content = document.getElementById("content");
   content.innerHTML = "";
 
   machineBrand.forEach((element) => {
     const image = element.image ? `../assets/screenshots/${element.image}` : `../assets/screenshots/${element.type}_not_found.png`;
-    const currentBrand = (brandName == 'favorites' ? element.brand : brandName)
-
+    const currentBrand = brandName == "favorites" ? element.brand : brandName;
 
     // Criar o card
     const card = document.createElement("div");
@@ -122,7 +120,14 @@ export function play(event) {
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
+
   const emulator = findEmulator(getConfig(), brand, name);
+
+  // We know the emulator type, now we need the type command and parameters
+  let jsonSystems = getConfig().systems;
+  var ret = jsonSystems.find((e) => e.type === emulator.type);
+  emulator.system = ret
+
   ipcRenderer.send("playClick", emulator);
 }
 

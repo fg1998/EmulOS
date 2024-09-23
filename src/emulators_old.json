@@ -1,19 +1,39 @@
 {
   "systems": [
     {
-      "emulator": "ZEsarUX",
+      "emulator": "ZesarUX",
+      "type": "sinclair",
       "path": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
-      "desc": "A complete Sinclair emulator, includes ZX81, Spectrum, russian and brazilian clones and even Zx Spectrum Next"
+      "desc": "A complete Sinclair emulator, includes ZX81, Spectrum, russian and brazilian clones and even Zx Spectrum Next",
+      "param": ""
     },
     {
-      "Emulator": "Vice",
+      "emulator": "Vice",
+      "type": "commodore",
       "path": "/Applications/Vice.app/Contents/macOS/vice",
-      "desc": "A 8 bit emulator for 8 bit Commodore Machines, includes C64, C128, VIC20, PET, etc"
+      "desc": "A 8 bit emulator for 8 bit Commodore Machines, includes C64, C128, VIC20, PET, etc",
+      "param": ""
     },
     {
-      "Emulator": "UAE",
+      "emulator": "uae",
+      "type": "amiga",
       "path": "/Applications/Vice.app/Contents/macOS/uae",
-      "desc": "Commodore Amiga emulator"
+      "desc": "Commodore Amiga emulator",
+      "param": ""
+    },
+    {
+      "emulator": "Virtual Apple",
+      "type": "apple2",
+      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "desc": "Apple 8 bit emulator",
+      "param": ""
+    },
+    {
+      "emulator": "openMSX",
+      "type": "msx",
+      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "desc": "MSX emulator",
+      "param": ""
     }
   ],
   "emulators": {
@@ -24,18 +44,16 @@
           {
             "name": "Apple ][",
             "desc": "Second Apple PCeff",
-            "type": "apple",
+            "type": "apple2",
             "favorite": "false",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
             "name": "Original Macintosh2",
             "desc": "Apple's first Mac3",
-            "type": "apple",
+            "type": "apple2",
             "favorite": "false",
             "image": "mac.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
         ]
@@ -49,7 +67,6 @@
             "type": "sinclair",
             "favorite": "true",
             "image": "zx81.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine zx81 --fullscreen"
           },
           {
@@ -58,7 +75,6 @@
             "type": "sinclair",
             "favorite": "false",
             "image": "spectrum.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine 48k --fullscreen"
           },
           {
@@ -67,7 +83,6 @@
             "type": "sinclair",
             "favorite": "false",
             "image": "128.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine 128k --fullscreen"
           },
           {
@@ -76,7 +91,6 @@
             "type": "sinclair",
             "favorite": "false",
             "image": "plus3.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine P340 --fullscreen"
           },
           {
@@ -85,25 +99,22 @@
             "type": "sinclair",
             "favorite": "true",
             "image": "tk90x.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine TK90X --fullscreen"
           },
           {
             "name": "Sam Coupe",
             "desc": "Miles Gordon Spectrum on steroids",
-            "type": "Sinclair",
+            "type": "sinclair",
             "favorite": "false",
             "image": "sam.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine Sam --fullscreen"
           },
           {
             "name": "Pentagon",
             "desc": "Russian Clone",
-            "type": "Sinclair",
+            "type": "sinclair",
             "favorite": false,
             "image": "pentagon.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine pentagon --fullscreen"
           },
           {
@@ -112,15 +123,13 @@
             "type": "sinclair",
             "favorite": false,
             "image": "tbblue.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
-            "parameter": "--machine Sam --fullscreen"
+            "parameter": "--machine TBBlue --fullscreen"
           },
           {
             "name": "Jupiter Ace",
             "desc": "Z80 based non-sinclair machine",
-            "type": "sinclair",
+            "type": "commodore",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -129,7 +138,6 @@
             "type": "sinclair",
             "favorite": false,
             "image": "ql.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine QL --fullscreen"
           }
         ]
@@ -142,7 +150,6 @@
             "desc": "First Commodore computer",
             "type": "commodore",
             "favorite": "false",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -151,7 +158,6 @@
             "type": "commodore",
             "favorite": "true",
             "image": "c64.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -160,25 +166,22 @@
             "type": "commodore",
             "favorite": "false",
             "image": "c128.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
             "name": "Amiga 500",
             "desc": "16 Bit computer",
-            "type": "commodore",
+            "type": "amiga",
             "favorite": false,
             "image": "a500.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
             "name": "Amiga 1200",
             "desc": "16 Bit computer, AGA graphics",
-            "type": "commodore",
+            "type": "amiga",
             "favorite": "true",
             "image": "a1200.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
         ]
@@ -191,7 +194,6 @@
             "desc": "Brazilian MSX 1.0",
             "type": "msx",
             "favorite": "true",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -199,7 +201,6 @@
             "desc": "Brazilian MSX 1.0",
             "type": "msx",
             "favorite": "true",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -207,7 +208,6 @@
             "desc": "Philips MSX 1.0",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -215,7 +215,6 @@
             "desc": "Panasonic MSX 2.0",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -223,7 +222,6 @@
             "desc": "Sony MSX 2.0",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -231,7 +229,6 @@
             "desc": "Panasonic MSX 2.0+",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -239,7 +236,6 @@
             "desc": "Panasonic MSX Turbo R",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
         ]

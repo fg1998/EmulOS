@@ -2,38 +2,38 @@
   "systems": [
     {
       "emulator": "ZesarUX",
-      "type" : "sinclair",
+      "type": "sinclair",
       "path": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
       "desc": "A complete Sinclair emulator, includes ZX81, Spectrum, russian and brazilian clones and even Zx Spectrum Next",
-      "param" : ""
+      "param": ""
     },
     {
       "emulator": "Vice",
-      "type" : "commodore",
+      "type": "commodore",
       "path": "/Applications/Vice.app/Contents/macOS/vice",
       "desc": "A 8 bit emulator for 8 bit Commodore Machines, includes C64, C128, VIC20, PET, etc",
-      "param" : ""
+      "param": ""
     },
     {
       "emulator": "uae",
-      "type" : "amiga",
+      "type": "amiga",
       "path": "/Applications/Vice.app/Contents/macOS/uae",
       "desc": "Commodore Amiga emulator",
-      "param" : ""
+      "param": ""
     },
     {
       "emulator": "Virtual Apple",
-      "type" : "apple2",
-      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "type": "apple2",
+      "path": "/Applications/Vice.app/Contents/macOS/apple2",
       "desc": "Apple 8 bit emulator",
-      "param" : ""
+      "param": ""
     },
     {
       "emulator": "openMSX",
-      "type" : "msx",
-      "path": "/Applications/Vice.app/Contents/macOS/uae",
+      "type": "msx",
+      "path": "/Applications/Vice.app/Contents/macOS/openmsx",
       "desc": "MSX emulator",
-      "param" : ""
+      "param": ""
     }
   ],
   "emulators": {
@@ -46,7 +46,6 @@
             "desc": "Second Apple PCeff",
             "type": "apple2",
             "favorite": "false",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -55,7 +54,6 @@
             "type": "apple2",
             "favorite": "false",
             "image": "mac.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
         ]
@@ -69,7 +67,6 @@
             "type": "sinclair",
             "favorite": "true",
             "image": "zx81.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine zx81 --fullscreen"
           },
           {
@@ -78,7 +75,6 @@
             "type": "sinclair",
             "favorite": "false",
             "image": "spectrum.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine 48k --fullscreen"
           },
           {
@@ -87,7 +83,6 @@
             "type": "sinclair",
             "favorite": "false",
             "image": "128.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine 128k --fullscreen"
           },
           {
@@ -96,7 +91,6 @@
             "type": "sinclair",
             "favorite": "false",
             "image": "plus3.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine P340 --fullscreen"
           },
           {
@@ -105,7 +99,6 @@
             "type": "sinclair",
             "favorite": "true",
             "image": "tk90x.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine TK90X --fullscreen"
           },
           {
@@ -114,7 +107,6 @@
             "type": "sinclair",
             "favorite": "false",
             "image": "sam.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine Sam --fullscreen"
           },
           {
@@ -123,7 +115,6 @@
             "type": "sinclair",
             "favorite": false,
             "image": "pentagon.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine pentagon --fullscreen"
           },
           {
@@ -132,7 +123,6 @@
             "type": "sinclair",
             "favorite": false,
             "image": "tbblue.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine TBBlue --fullscreen"
           },
           {
@@ -140,7 +130,6 @@
             "desc": "Z80 based non-sinclair machine",
             "type": "sinclair",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -149,7 +138,6 @@
             "type": "sinclair",
             "favorite": false,
             "image": "ql.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine QL --fullscreen"
           }
         ]
@@ -162,7 +150,6 @@
             "desc": "First Commodore computer",
             "type": "commodore",
             "favorite": "false",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -171,7 +158,6 @@
             "type": "commodore",
             "favorite": "true",
             "image": "c64.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -180,7 +166,6 @@
             "type": "commodore",
             "favorite": "false",
             "image": "c128.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -189,7 +174,6 @@
             "type": "amiga",
             "favorite": false,
             "image": "a500.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -198,7 +182,6 @@
             "type": "amiga",
             "favorite": "true",
             "image": "a1200.png",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
         ]
@@ -211,7 +194,6 @@
             "desc": "Brazilian MSX 1.0",
             "type": "msx",
             "favorite": "true",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -219,7 +201,6 @@
             "desc": "Brazilian MSX 1.0",
             "type": "msx",
             "favorite": "true",
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -227,7 +208,6 @@
             "desc": "Philips MSX 1.0",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -235,7 +215,6 @@
             "desc": "Panasonic MSX 2.0",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -243,7 +222,6 @@
             "desc": "Sony MSX 2.0",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -251,7 +229,6 @@
             "desc": "Panasonic MSX 2.0+",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           },
           {
@@ -259,7 +236,6 @@
             "desc": "Panasonic MSX Turbo R",
             "type": "msx",
             "favorite": false,
-            "command": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
             "parameter": "--machine ACE --fullscreen"
           }
         ]
