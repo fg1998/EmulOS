@@ -1,5 +1,5 @@
 import { doTiles } from "./maincontent.js";
-import { getConfig } from "../util.js";
+import { getConfigFile } from "../util.js";
 
 export function addItensToLateralMenu(jsonResult) {
   //ADD ITENS DO LATERAL MENU (BRANDS)
@@ -39,7 +39,7 @@ export function addItensToLateralMenu(jsonResult) {
 
 // Lateral Menu (brand) Click events
 function selectBrand(event) {
-  var jsonResult = getConfig();
+  var jsonResult = getConfigFile();
   const element = event.target;
   const selectBrand = element.dataset.brand;
 
@@ -60,7 +60,7 @@ function selectBrand(event) {
 
 function getFavoriteEmulators() {
   const favoriteEmulators = [];
-  let data = getConfig();
+  let data = getConfigFile();
   data.emulators.brand.forEach((brand) => {
     brand.emulator.forEach((emulator) => {
       if (emulator.favorite === "true" || emulator.favorite === true) {

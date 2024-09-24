@@ -1,10 +1,13 @@
-{
+{ "config": {
+  "rompath" : "/Users/fg1998/projetos/EmulOS/src/roms",
+  "version" : "1"
+},
   "systems": [
     {
-      "emulator": "ZesarUX",
+      "emulator": "FUSE",
       "type": "sinclair",
-      "path": "/Applications/ZEsarUX.app/Contents/MacOS/zesarux",
-      "desc": "A complete Sinclair emulator, includes ZX81, Spectrum, russian and brazilian clones and even Zx Spectrum Next",
+      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
+      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": ""
     },
     {
@@ -62,20 +65,12 @@
         "name": "Sinclair",
         "emulator": [
           {
-            "name": "ZX81 48kb",
-            "desc": "Second Sinclair computer, black and white, 48Kb",
-            "type": "sinclair",
-            "favorite": "false",
-            "image": "zx81.png",
-            "parameter": "--machine zx81 --fullscreen"
-          },
-          {
             "name": "ZX Spectrum 48kb",
             "desc": "Color, 48Kb",
             "type": "sinclair",
             "favorite": "false",
             "image": "spectrum.png",
-            "parameter": "--machine 48k --fullscreen"
+            "parameter": "--machine 48"
           },
           {
             "name": "Spectrum 128",
@@ -83,7 +78,7 @@
             "type": "sinclair",
             "favorite": "false",
             "image": "128.png",
-            "parameter": "--machine 128k --fullscreen"
+            "parameter": "--machine 128"
           },
           {
             "name": "Spectrum +3",
@@ -99,46 +94,7 @@
             "type": "sinclair",
             "favorite": "true",
             "image": "tk90x.png",
-            "parameter": "--machine TK90X --fullscreen"
-          },
-          {
-            "name": "Sam Coupe",
-            "desc": "Miles Gordon Spectrum on steroids",
-            "type": "sinclair",
-            "favorite": "false",
-            "image": "sam.png",
-            "parameter": "--machine Sam --fullscreen"
-          },
-          {
-            "name": "Pentagon",
-            "desc": "Russian Clone",
-            "type": "sinclair",
-            "favorite": false,
-            "image": "pentagon.png",
-            "parameter": "--machine pentagon --fullscreen"
-          },
-          {
-            "name": "ZX Spectrum Next/TBBlue",
-            "desc": "New Sinclair model",
-            "type": "sinclair",
-            "favorite": false,
-            "image": "tbblue.png",
-            "parameter": "--machine TBBlue --fullscreen"
-          },
-          {
-            "name": "Jupiter Ace",
-            "desc": "Z80 based non-sinclair machine",
-            "type": "sinclair",
-            "favorite": false,
-            "parameter": "--machine ACE --fullscreen"
-          },
-          {
-            "name": "Sinclair QL",
-            "desc": "16 Bit Sinclair Machine",
-            "type": "sinclair",
-            "favorite": false,
-            "image": "ql.png",
-            "parameter": "--machine QL --fullscreen"
+            "parameter": "--machine 48 --rom-48 ${rompath}/tk90x.rom"
           }
         ]
       },

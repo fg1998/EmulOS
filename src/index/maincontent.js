@@ -1,4 +1,4 @@
-import { findEmulator, getConfig, saveConfigFile } from "../util.js";
+import { findEmulator, getConfig, getConfigFile, saveConfigFile } from "../util.js";
 const { ipcRenderer } = require("electron");
 
 export function doTiles(brandName, machineBrand) {
@@ -111,7 +111,7 @@ function config(event) {
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
-  const emulator = findEmulator(getConfig(), brand, name);
+  const emulator = findEmulator(getConfigFile(), brand, name);
   emulator.brand = brand;
   ipcRenderer.send("configClick", emulator);
 }
@@ -121,12 +121,14 @@ export function play(event) {
   const brand = element.dataset.brand;
   const name = element.dataset.name;
 
-  const emulator = findEmulator(getConfig(), brand, name);
+  const emulator = findEmulator(getConfigFile(), brand, name);
 
   // We know the emulator type, now we need the type command and parameters
-  let jsonSystems = getConfig().systems;
+  let jsonSystems = getConfigFile().systems;
   var ret = jsonSystems.find((e) => e.type === emulator.type);
+  var config = getConfig()
   emulator.system = ret
+  emulator.config = config
 
   ipcRenderer.send("playClick", emulator);
 }
@@ -137,7 +139,7 @@ function favorite(event) {
   const name = element.dataset.name;
   const favorite = element.dataset.favorite;
 
-  let jsonResult = getConfig();
+  let jsonResult = getConfigFile();
   const emulator = findEmulator(jsonResult, selectBrand, name);
 
   emulator.favorite = favorite == "true" ? "false" : "true";

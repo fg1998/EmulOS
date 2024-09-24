@@ -101,5 +101,9 @@ ipcMain.on('close-child-window', (event, param) => {
 });
 
 ipcMain.on("playClick", (event, content) => {
-  const r = execFile(content.system.path, content.parameter.split(" "));
+
+  //ROM PATH
+  let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath)
+  
+  const r = execFile(content.system.path, parameter.split(" "));
 });

@@ -10,7 +10,7 @@ export function findEmulator(jsonResult, brandName, emulatorName) {
   }
   return null;
 }
- export function getConfig() {
+ export function getConfigFile() {
   var emulatorsFile = path.join(__dirname, "..", "emulators.json");
   var jsonFile = fs.readFileSync(emulatorsFile);
   var jsonResult = JSON.parse(jsonFile);
@@ -24,5 +24,10 @@ export function saveConfigFile(jsonResult) {
   fs.writeFileSync(originalName, JSON.stringify(jsonResult, null, 2));
 }
 
+
+export function getConfig() {
+  var ret = getConfigFile();
+  return ret.config
+}
 
 

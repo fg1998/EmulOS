@@ -71,19 +71,18 @@ i.selected {
   font-size: 24px;
 }
 
-.separator {
-}
+
 
 .botao-redondo {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px; /* Largura do botão */
-  height: 50px; /* Altura do botão */
+  width: 32px; /* Largura do botão */
+  height: 33px; /* Altura do botão */
   border-radius: 50%; /* Torna o botão redondo */
   background-color: #bbb; /* Cor de fundo */
   color: white; /* Cor do texto */
-  font-size: 24px; /* Tamanho do ícone */
+  font-size: 18px; /* Tamanho do ícone */
   border: none; /* Sem borda */
   cursor: pointer; /* Cursor de mão ao passar o mouse */
   transition: background-color 0.3s; /* Efeito de transição */

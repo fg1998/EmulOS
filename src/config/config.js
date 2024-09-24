@@ -1,12 +1,12 @@
 // Requer o ipcRenderer do Electron
 const { ipcRenderer } = require("electron");
-import { findEmulator, getConfig, saveConfigFile } from "../util.js";
+import { findEmulator, getConfigFile, saveConfigFile } from "../util.js";
 const querystring = require("querystring");
 
 let query = querystring.parse(global.location.search);
 let data = JSON.parse(query["?data"]);
 
-let jsonResult = getConfig();
+let jsonResult = getConfigFile();
 let systemList = jsonResult.systems;
 const typeComp = document.getElementById("type");
 
@@ -50,7 +50,7 @@ function save() {
   var type = document.getElementById("type").value;
   var parameter = document.getElementById("parameter").value;
 
-  var jsonResult = getConfig();
+  var jsonResult = getConfigFile();
   const emulator = findEmulator(jsonResult, selectBrand, originalName);
 
   emulator.name = name;
