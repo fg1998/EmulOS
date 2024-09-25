@@ -22,9 +22,14 @@ const emulators = jsonResult.emulators.filter((emulator) => emulator.brand == fi
 doTiles(firstBrand, emulators);
 
 ipcRenderer.on("reload-tiles", function (evt, param) {
-  var jsonResult = getConfigFile();
+  var jsonResult = getConfigFile()
 
   let selectBrand = param.brand;
 
-  doTiles(param.brand, jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator);
+  //doTiles(param.brand, jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator);
+  doTiles(
+    selectBrand,
+    jsonResult.emulators.filter((emulator) => emulator.brand == selectBrand)
+  );
+
 });

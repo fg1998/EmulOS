@@ -87,9 +87,11 @@ ipcMain.on("configClick", (event, content) => {
 });
 
 ipcMain.on("close-child-window", (event, param) => {
+  console.log(param)
   if (configWindow) {
     configWindow.close();
-    mainWindow.webContents.send("reload-tiles", param);
+    if(param.brand)
+      mainWindow.webContents.send("reload-tiles", param);
   }
 });
 

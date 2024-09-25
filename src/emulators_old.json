@@ -27,42 +27,42 @@
   ],
   "types": [
     {
-      "emulator": "FUSE",
+      "name": "FUSE",
       "type": "fuse",
       "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--full-screen"
     },
     {
-      "emulator": "ZEsarUX",
+      "name": "ZEsarUX",
       "type": "zesarux",
       "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--vo sdl --fullscreen"
     },
     {
-      "emulator": "Vice",
+      "name": "Vice",
       "type": "commodore",
       "path": "/Applications/Vice.app/Contents/macOS/vice",
       "desc": "A 8 bit emulator for 8 bit Commodore Machines, includes C64, C128, VIC20, PET, etc",
       "param": ""
     },
     {
-      "emulator": "uae",
+      "name": "uae",
       "type": "amiga",
       "path": "/Applications/Vice.app/Contents/macOS/uae",
       "desc": "Commodore Amiga emulator",
       "param": ""
     },
     {
-      "emulator": "Virtual Apple",
+      "name": "Virtual Apple",
       "type": "apple2",
       "path": "/Applications/Vice.app/Contents/macOS/apple2",
       "desc": "Apple 8 bit emulator",
       "param": ""
     },
     {
-      "emulator": "openMSX",
+      "name": "openMSX",
       "type": "msx",
       "path": "/Applications/Vice.app/Contents/macOS/openmsx",
       "desc": "MSX emulator",
@@ -116,7 +116,7 @@
     },
     {
       "brand": "sinclair",
-      "name": "Microdigital TK90X",
+      "name": "Microdigital TK90X1",
       "desc": "Brasilian Clone",
       "type": "zesarux",
       "favorite": "true",
@@ -180,7 +180,7 @@
       "name": "HotBit",
       "desc": "Brazilian MSX 1.0",
       "type": "msx",
-      "favorite": "false",
+      "favorite": "true",
       "parameter": "--machine ACE --fullscreen"
     },
     {

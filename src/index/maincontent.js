@@ -113,8 +113,8 @@ function config(event) {
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
-  const emulator = findEmulator(getConfigFile(), brand, name);
-  emulator.brand = brand;
+  const emulator = findEmulator(getConfigFile().emulators, brand, name);
+
   ipcRenderer.send("configClick", emulator);
 }
 
@@ -144,12 +144,14 @@ function favorite(event) {
   const jsonResult = getConfigFile();
 
   const emulator = findEmulator(jsonResult.emulators, selectBrand, name);
-
   emulator.favorite = favorite == "true" ? "false" : "true";
 
   saveConfigFile(jsonResult);
   //const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator;
-  doTiles(selectBrand, jsonResult.emulators.filter((emulator) => emulator.brand == selectBrand));
+  doTiles(
+    selectBrand,
+    jsonResult.emulators.filter((emulator) => emulator.brand == selectBrand)
+  );
 }
 
 function remove(event) {

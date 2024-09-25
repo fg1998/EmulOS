@@ -7,18 +7,29 @@ let query = querystring.parse(global.location.search);
 let data = JSON.parse(query["?data"]);
 
 let jsonResult = getConfigFile();
-let systemList = jsonResult.systems;
-const typeComp = document.getElementById("type");
+let typeList = jsonResult.types;
+let brandList = jsonResult.brands;
 
-systemList.forEach((element) => {
+const brandComp = document.getElementById("brand");
+brandList.forEach((element) => {
+  const novoItem = document.createElement("option");
+  novoItem.value = element.name;
+  novoItem.textContent = element.desc;
+  novoItem.selected = element.name == data.brand;
+  brandComp.appendChild(novoItem);
+});
+
+const typeComp = document.getElementById("type");
+typeList.forEach((element) => {
   const novoItem = document.createElement("option");
   novoItem.value = element.type;
-  novoItem.textContent = element.type;
+  novoItem.textContent = element.name;
   novoItem.selected = element.type == data.type;
   typeComp.appendChild(novoItem);
 });
 
-document.getElementById("brand").value = data.brand;
+//document.getElementById("brand").value = data.brand;
+document.getElementById("originalBrand").value = data.brand;
 document.getElementById("name").value = data.name;
 document.getElementById("originalName").value = data.name;
 document.getElementById("desc").value = data.desc;
@@ -43,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // SAVE BUTTON METHOD
 function save() {
+  var originalBrand = document.getElementById("originalBrand").value;
   var selectBrand = document.getElementById("brand").value;
   var name = document.getElementById("name").value;
   var originalName = document.getElementById("originalName").value;
@@ -51,18 +63,20 @@ function save() {
   var parameter = document.getElementById("parameter").value;
 
   var jsonResult = getConfigFile();
-  const emulator = findEmulator(jsonResult, selectBrand, originalName);
+
+  const emulator = findEmulator(jsonResult.emulators, originalBrand, originalName);
 
   emulator.name = name;
   emulator.desc = desc;
   emulator.type = type;
   emulator.parameter = parameter;
+  emulator.brand = selectBrand;
 
   saveConfigFile(jsonResult);
-  goToFirstWindow(selectBrand, name);
+  goToFirstWindow({brand :selectBrand, name : name});
 }
 
 //CANCEL BUTTON METHOD
-export function goToFirstWindow(brand, name) {
-  ipcRenderer.send("close-child-window", { brand: brand, name: name });
+export function goToFirstWindow(param) {
+  ipcRenderer.send("close-child-window", param);
 }
