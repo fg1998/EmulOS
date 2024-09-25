@@ -2,14 +2,28 @@
   "config": {
     "rompath": "/Users/fg1998/projetos/EmulOS/src/roms",
     "version": "1"
-  },
+  },"brands" : [
+    {"name" : "sinclair",  "desc" : "Sinclair"},
+    {"name" : "apple2", "desc" : "Apple ]["},
+    {"name":"commodore",  "desc" : "Commodore 8 Bit"}, 
+    {"name" : "msx",  "desc" : "MSX "},
+    {"name" : "amiga", "desc" :"Commodore 16/32 bit"}
+  ]
+  ,
   "systems": [
     {
       "emulator": "FUSE",
-      "type": "sinclair",
+      "type": "fuse",
       "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
-      "param": ""
+      "param": "--full-screen"
+    },
+    {
+    "emulator": "ZEsarUX",
+      "type": "zesarux",
+      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
+      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
+      "param": "--vo sdl --fullscreen"
     },
     {
       "emulator": "Vice",
@@ -68,7 +82,7 @@
           {
             "name": "ZX Spectrum 48kb",
             "desc": "Color, 48Kb",
-            "type": "sinclair",
+            "type": "fuse",
             "favorite": "false",
             "image": "spectrum.png",
             "parameter": "--machine 48"
@@ -76,7 +90,7 @@
           {
             "name": "Spectrum 128",
             "desc": "Color, 128Kb",
-            "type": "sinclair",
+            "type": "zesarux",
             "favorite": "false",
             "image": "128.png",
             "parameter": "--machine 128"
@@ -84,7 +98,7 @@
           {
             "name": "Spectrum +3",
             "desc": "ROM 4.0",
-            "type": "sinclair",
+            "type": "zesarux",
             "favorite": "false",
             "image": "plus3.png",
             "parameter": "--machine plus3"
@@ -92,16 +106,15 @@
           {
             "name": "Microdigital TK90X",
             "desc": "Brasilian Clone",
-            "type": "sinclair",
+            "type": "zesarux",
             "favorite": "true",
             "image": "tk90x.png",
-            "parameter": "--machine 48 --rom-48 ${rompath}/tk90x.rom"
+            "parameter": "--machine 48 --rom-48 ${rompath}/tk90x.rom --aspect-hint --full-screen"
           },
-          
           {
             "name": "Microdigital TK95",
             "desc": "Brazilian Clone",
-            "type": "sinclair",
+            "type": "fuse",
             "favorite": "true",
             "parameter": "--machine 48 --rom-48 ${rompath}/tk95.rom"
           }

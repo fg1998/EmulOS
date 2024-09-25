@@ -2,6 +2,9 @@
 ##########################
 release-builds/
 
+*.tar
+*.tar.gz
+
 # Development folders and files #
 #################################
 .tmp/
