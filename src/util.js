@@ -3,9 +3,11 @@ var fs = require("fs");
 var XMLParser = require("fast-xml-parser");
 
 export function findEmulator(jsonResult, brandName, emulatorName) {
-  const brand = jsonResult.emulators.brand.find((b) => b.name === brandName);
-  if (brand) {
-    var ret = brand.emulator.find((e) => e.name === emulatorName);
+  
+
+  const emulator = jsonResult.find((emulator) => emulator.brand == brandName && emulator.name == emulatorName);
+  if (emulator) {
+    var ret = emulator
     return ret;
   }
   return null;

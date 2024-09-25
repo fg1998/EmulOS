@@ -8,21 +8,18 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
-
-
-
- //HOT RELOAD
+//HOT RELOAD
 try {
-  require('electron-reloader')(module, {
-    ignore:['src/emulators*.json']
-  })
+  require("electron-reloader")(module, {
+    ignore: ["src/emulators*.json"],
+  });
 } catch (_) {}
 
 let mainWindow;
 
 const createWindow = () => {
   // Create the browser window.
- mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1024,
     height: 768,
     webPreferences: {
@@ -34,7 +31,7 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "index.html"));
-  mainWindow.maximize()
+  mainWindow.maximize();
 };
 
 // This method will be called when Electron has finished
@@ -61,49 +58,44 @@ app.on("window-all-closed", () => {
   }
 });
 
+function createConfigWindow(content) {
+  configWindow = new BrowserWindow({
+    width: 700,
+    height: 500,
+    modal: true,
+    show: false,
+    parent: mainWindow, // Make sure to add parent window here
 
+    // Make sure to add webPreferences with below configuration
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
+    },
+  });
 
-function createConfigWindow(content) { 
+  // Child window loads settings.html file
+  configWindow.loadFile(path.join(__dirname, "../config/config.html"), { query: { data: JSON.stringify(content) } });
 
-  configWindow = new BrowserWindow({ 
-    width: 700, 
-    height: 500, 
-    modal: true, 
-    show: false, 
-    parent: mainWindow, // Make sure to add parent window here 
-  
-    // Make sure to add webPreferences with below configuration 
-    webPreferences: { 
-      nodeIntegration: true, 
-      contextIsolation: false, 
-      enableRemoteModule: true, 
-    }, 
-  }); 
-  
-  // Child window loads settings.html file 
-  configWindow.loadFile(path.join(__dirname, "../config/config.html"), {query: {"data": JSON.stringify(content)}}); 
-  
-  configWindow.once("ready-to-show", () => { 
-    configWindow.show(); 
-  }); 
+  configWindow.once("ready-to-show", () => {
+    configWindow.show();
+  });
+}
 
-} 
-
-ipcMain.on('configClick', (event, content) => {
+ipcMain.on("configClick", (event, content) => {
   createConfigWindow(content);
-})
+});
 
-ipcMain.on('close-child-window', (event, param) => {
+ipcMain.on("close-child-window", (event, param) => {
   if (configWindow) {
     configWindow.close();
-    mainWindow.webContents.send('reload-tiles', param);
+    mainWindow.webContents.send("reload-tiles", param);
   }
 });
 
 ipcMain.on("playClick", (event, content) => {
-
   //ROM PATH
-  let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath)
-  
+  let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath);
+
   const r = execFile(content.system.path, parameter.split(" "));
 });

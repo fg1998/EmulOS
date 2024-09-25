@@ -3,16 +3,18 @@ import { getConfigFile } from "../util.js";
 
 export function addItensToLateralMenu(jsonResult) {
   //ADD ITENS DO LATERAL MENU (BRANDS)
+  jsonResult.sort((a, b) => a.desc.localeCompare(b.desc));
+
   var menu = document.getElementById("brandMenu");
 
-  jsonResult.emulators.brand.forEach((element, index) => {
+  jsonResult.forEach((element, index) => {
     let menuItem = document.createElement("li");
     menuItem.className = "pure-menu-item";
     menuItem.setAttribute("data-brand", element.name);
 
     menuItem.innerHTML = `<a href="#" data-brand="${element.name}"  class="pure-menu-link"> \
                             <i class="fa fa-circle"  data-brand="${element.name}"></i> \
-                            ${element.name} \
+                            ${element.desc} \
                           </a>`;
 
     menuItem.addEventListener("click", selectBrand);
@@ -52,30 +54,14 @@ function selectBrand(event) {
   menuItem.classList.add("pure-menu-selected-background");
 
   if (selectBrand == "favorites") {
-    doTiles("favorites", getFavoriteEmulators());
+    doTiles(
+      "favorites",
+      jsonResult.emulators.filter((emulator) => emulator.favorite == "true")
+    );
   } else {
-    doTiles(selectBrand, jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator);
+    doTiles(
+      selectBrand,
+      jsonResult.emulators.filter((emulator) => emulator.brand == selectBrand)
+    );
   }
-}
-
-function getFavoriteEmulators() {
-  const favoriteEmulators = [];
-  let data = getConfigFile();
-  data.emulators.brand.forEach((brand) => {
-    brand.emulator.forEach((emulator) => {
-      if (emulator.favorite === "true" || emulator.favorite === true) {
-        favoriteEmulators.push({
-          brand: brand.name,
-          name: emulator.name,
-          desc: emulator.desc,
-          favorite: emulator.favorite,
-          image: emulator.image,
-          command: emulator.command,
-          parameter: emulator.parameter,
-          type: emulator.type,
-        });
-      }
-    });
-  });
-  return favoriteEmulators;
 }

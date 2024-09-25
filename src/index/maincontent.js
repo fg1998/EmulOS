@@ -5,8 +5,10 @@ export function doTiles(brandName, machineBrand) {
   const content = document.getElementById("content");
   content.innerHTML = "";
 
+  machineBrand.sort((a, b) => a.name.localeCompare(b.name));
+
   machineBrand.forEach((element) => {
-    const image = element.image ? `../assets/screenshots/${element.image}` : `../assets/screenshots/${element.type}_not_found.png`;
+    const image = element.image ? `../assets/screenshots/${element.image}` : `../assets/screenshots/${element.brand}_not_found.png`;
     const currentBrand = brandName == "favorites" ? element.brand : brandName;
 
     // Criar o card
@@ -121,14 +123,14 @@ export function play(event) {
   const brand = element.dataset.brand;
   const name = element.dataset.name;
 
-  const emulator = findEmulator(getConfigFile(), brand, name);
-
+  const emulator = findEmulator(getConfigFile().emulators, brand, name);
   // We know the emulator type, now we need the type command and parameters
-  let jsonSystems = getConfigFile().systems;
+
+  let jsonSystems = getConfigFile().types;
   var ret = jsonSystems.find((e) => e.type === emulator.type);
-  var config = getConfig()
-  emulator.system = ret
-  emulator.config = config
+  var config = getConfig();
+  emulator.system = ret;
+  emulator.config = config;
 
   ipcRenderer.send("playClick", emulator);
 }
@@ -139,21 +141,15 @@ function favorite(event) {
   const name = element.dataset.name;
   const favorite = element.dataset.favorite;
 
-  let jsonResult = getConfigFile();
-  const emulator = findEmulator(jsonResult, selectBrand, name);
+  const jsonResult = getConfigFile();
+
+  const emulator = findEmulator(jsonResult.emulators, selectBrand, name);
 
   emulator.favorite = favorite == "true" ? "false" : "true";
 
-  /*
-  const originalName = path.join(__dirname, "..", "emulators.json");
-  const oldName = path.join(__dirname, ".", "emulators_old.json");
-  fs.renameSync(originalName, oldName);
-  fs.writeFileSync(originalName, JSON.stringify(jsonResult, null, 2));
-*/
-
   saveConfigFile(jsonResult);
-  const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator;
-  doTiles(selectBrand, machineBrand);
+  //const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator;
+  doTiles(selectBrand, jsonResult.emulators.filter((emulator) => emulator.brand == selectBrand));
 }
 
 function remove(event) {
