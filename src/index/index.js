@@ -17,9 +17,12 @@ try {
 
 let mainWindow;
 
+console.log(path.join(__dirname, "../assets/emulos_logo_1024"))
+
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
+    setIcon:  path.join(__dirname, "../assets/emulos_logo_1024"),
     width: 1024,
     height: 768,
     webPreferences: {
