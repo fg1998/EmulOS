@@ -32,7 +32,7 @@ EmulOS is being developed with the Raspberry Pi 400 in mind, as its form factor 
 
 ## Getting Started
 
-To run EmulOS, follow these steps:
+To run EmulOS FrontEnd, follow these steps:
 
 1. Clone this repository:
    ```bash
