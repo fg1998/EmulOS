@@ -33,3 +33,15 @@ ipcRenderer.on("reload-tiles", function (evt, param) {
   );
 
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnAbout = document.getElementById("btnAbout");
+  if (btnAbout) {
+    btnAbout.addEventListener("click", save);
+  }
+});
+
+function aboutWindow() {
+  console.log('abour')
+}

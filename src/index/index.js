@@ -58,6 +58,33 @@ app.on("window-all-closed", () => {
   }
 });
 
+
+
+function createAboutWindow(content) {
+  aboutWindow = new BrowserWindow({
+    width: 500,
+    height: 510,
+    modal: true,
+    show: false,
+    parent: mainWindow, // Make sure to add parent window here
+
+    // Make sure to add webPreferences with below configuration
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
+    },
+  });
+
+  // Child window loads settings.html file
+  aboutWindow.loadFile(path.join(__dirname, "../about/about.html"), { query: { data: JSON.stringify(content) } });
+
+  aboutWindow.once("ready-to-show", () => {
+    aboutWindow.show();
+  });
+}
+
+
 function createConfigWindow(content) {
   configWindow = new BrowserWindow({
     width: 700,
@@ -82,6 +109,10 @@ function createConfigWindow(content) {
   });
 }
 
+ipcMain.on("showAboutWindow", (event, content) => {
+  createAboutWindow(content);
+});
+
 ipcMain.on("configClick", (event, content) => {
   createConfigWindow(content);
 });
@@ -92,6 +123,14 @@ ipcMain.on("close-child-window", (event, param) => {
     configWindow.close();
     if(param.brand)
       mainWindow.webContents.send("reload-tiles", param);
+  }
+});
+
+
+ipcMain.on("close-about-window", (event) => {
+  if (aboutWindow) {
+    aboutWindow.close();
+
   }
 });
 

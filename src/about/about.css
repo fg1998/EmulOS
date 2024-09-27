@@ -1,0 +1,35 @@
+
+.about-window {
+    background-color: #ffffff;
+
+    padding: 10px;
+    max-width: 400px;
+    margin: 50px auto;
+    text-align: center;
+}
+.logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+.title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.subtitle {
+    color: #666;
+    font-weight: 800;
+    padding-top: 10px;
+}
+.details {
+    text-align: center;
+
+    font-size: 0.9em;
+    color: #333;
+}
+.footer {
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #0078e7;
+    text-decoration: none;
+}
