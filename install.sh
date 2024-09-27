@@ -1,3 +1,6 @@
+#!/bin/bash
+
+echo "Install fuse"
 wget https://files.retropie.org.uk/archives/fuse-1.5.7.tar.gz
 mkdir fuse
 tar -xvf ./fuse-1.5.7.tar.gz -C ./fuse --strip-components 1
