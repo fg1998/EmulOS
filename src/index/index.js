@@ -9,11 +9,11 @@ if (require("electron-squirrel-startup")) {
 }
 
 //HOT RELOAD
-try {
-  require("electron-reloader")(module, {
-    ignore: ["src/emulators*.json"],
-  });
-} catch (_) {}
+//try {
+//  require("electron-reloader")(module, {
+//    ignore: ["src/emulators*.json"],
+//  });
+//} catch (_) {}
 
 let mainWindow;
 
@@ -182,6 +182,13 @@ ipcMain.on("close-child-window", (event, param) => {
 ipcMain.on("playClick", (event, content) => {
   //ROM PATH
   let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath);
+ 
+  const r = execFile(content.system.path, parameter.split(" "), (error, stdout, stderr)=> {
+    if(error){
+      console.log(error)
+    }
+    console.log(stdout)
+  })
 
-  const r = execFile(content.system.path, parameter.split(" "));
+
 });

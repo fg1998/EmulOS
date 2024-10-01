@@ -64,7 +64,7 @@
     {
       "name": "openMSX",
       "type": "msx",
-      "path": "/Applications/Vice.app/Contents/macOS/openmsx",
+      "path": "/home/fg1998/emulators/openmsx-bin/run.sh",
       "desc": "MSX emulator",
       "param": ""
     }
@@ -177,19 +177,19 @@
     },
     {
       "brand": "msx",
-      "name": "HotBit",
-      "desc": "Brazilian MSX 1.0",
+      "name": "Hotbit 1.2",
+      "desc": "Brazilian MSX 1.2",
       "type": "msx",
       "favorite": "true",
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "Sharp_HB-8000_1.2"
     },
     {
       "brand": "msx",
-      "name": "Expert",
-      "desc": "Brazilian MSX 1.0",
+      "name": "Expert 1.1",
+      "desc": "Brazilian MSX 1",
       "type": "msx",
       "favorite": "true",
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "Gradiente_Expert_GPC-1"
     },
     {
       "brand": "msx",
@@ -201,27 +201,27 @@
     },
     {
       "brand": "msx",
-      "name": "FS-A1",
-      "desc": "Panasonic MSX 2.0",
+      "name": "FS-5500 F2",
+      "desc": "Panasonic FS-5500 F2 MSX 2",
       "type": "msx",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "National_FS-5500F2"
     },
     {
       "brand": "msx",
-      "name": "HB-F1",
-      "desc": "Sony MSX 2.0",
+      "name": "FS-A1WSX",
+      "desc": "Panasonic MSX2+",
       "type": "msx",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "Panasonic_FS-A1WSX"
     },
     {
       "brand": "msx",
-      "name": "HHB-F1XDJ",
-      "desc": "Panasonic MSX 2.0+",
+      "name": "Boosted MSX2",
+      "desc": "GFX9000, Moonsound, FMPac, SCC+",
       "type": "msx",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "Boosted_MSX2_EN"
     },
     {
       "brand": "msx",
@@ -229,7 +229,7 @@
       "desc": "Panasonic MSX Turbo R",
       "type": "msx",
       "favorite": false,
-      "parameter": "--machine ACE --fullscreen"
+      "parameter": "Panasonic_FS-A1GT"
     }
   ]
 }
