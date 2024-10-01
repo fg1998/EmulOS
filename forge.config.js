@@ -1,9 +1,11 @@
 const { FusesPlugin } = require('@electron-forge/plugin-fuses');
 const { FuseV1Options, FuseVersion } = require('@electron/fuses');
+const path = require('path'); // Importa o módulo path
 
 module.exports = {
   packagerConfig: {
-    icon : "./src/icons/mac/icon.icns",
+    icon : path.resolve(process.cwd(), "src/assets", "icon.icns"),
+    extraResource: [path.resolve(process.cwd(), "src/assets", "icon.icns")],
     asar: true,
   },
   rebuildConfig: {},

@@ -17,12 +17,12 @@ try {
 
 let mainWindow;
 
-console.log(path.join(__dirname, "../assets/emulos_logo_1024"))
+console.log(path.join(process.cwd(), "src/assets", "icon.icns"));
 
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    setIcon:  path.join(__dirname, "../assets/emulos_logo_1024"),
+    icon: path.join(process.cwd(), "src/assets", "icon.icns"),
     width: 1024,
     height: 768,
     webPreferences: {
@@ -61,6 +61,52 @@ app.on("window-all-closed", () => {
   }
 });
 
+function createSetupWindow(content) {
+  setupWindow = new BrowserWindow({
+    width: 600,
+    height: 610,
+    modal: true,
+    show: false,
+    parent: mainWindow, // Make sure to add parent window here
+
+    // Make sure to add webPreferences with below configuration
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
+    },
+  });
+
+  // Child window loads settings.html file
+  setupWindow.loadFile(path.join(__dirname, "../setup/setup.html"), { query: { data: JSON.stringify(content) } });
+
+  setupWindow.once("ready-to-show", () => {
+    setupWindow.show();
+  });
+
+  ipcMain.on("showSetupWindow", (event, content) => {
+    createSetupWindow(content);
+  });
+
+  ipcMain.on("close-setip-window", (event) => {
+    if (setupWindow) {
+      setupWindow.close();
+    }
+  });
+}
+
+ipcMain.on("showSetupWindow", (event, content) => {
+  createSetupWindow(content);
+});
+
+ipcMain.on("close-setup-window", (event) => {
+  if (setupWindow) {
+    setupWindow.close();
+  }
+});
+
+
+
 
 
 function createAboutWindow(content) {
@@ -87,6 +133,15 @@ function createAboutWindow(content) {
   });
 }
 
+ipcMain.on("showAboutWindow", (event, content) => {
+  createAboutWindow(content);
+});
+
+ipcMain.on("close-about-window", (event) => {
+  if (aboutWindow) {
+    aboutWindow.close();
+  }
+});
 
 function createConfigWindow(content) {
   configWindow = new BrowserWindow({
@@ -112,28 +167,15 @@ function createConfigWindow(content) {
   });
 }
 
-ipcMain.on("showAboutWindow", (event, content) => {
-  createAboutWindow(content);
-});
-
 ipcMain.on("configClick", (event, content) => {
   createConfigWindow(content);
 });
 
 ipcMain.on("close-child-window", (event, param) => {
-  console.log(param)
+  console.log(param);
   if (configWindow) {
     configWindow.close();
-    if(param.brand)
-      mainWindow.webContents.send("reload-tiles", param);
-  }
-});
-
-
-ipcMain.on("close-about-window", (event) => {
-  if (aboutWindow) {
-    aboutWindow.close();
-
+    if (param.brand) mainWindow.webContents.send("reload-tiles", param);
   }
 });
 
