@@ -9,15 +9,13 @@ if (require("electron-squirrel-startup")) {
 }
 
 //HOT RELOAD
-//try {
-//  require("electron-reloader")(module, {
-//    ignore: ["src/emulators*.json"],
-//  });
-//} catch (_) {}
+try {
+  require("electron-reloader")(module, {
+    ignore: ["src/emulators*.json"],
+  });
+} catch (_) {}
 
 let mainWindow;
-
-console.log(path.join(process.cwd(), "src/assets", "icon.icns"));
 
 const createWindow = () => {
   // Create the browser window.
@@ -61,6 +59,97 @@ app.on("window-all-closed", () => {
   }
 });
 
+//////////////
+//ADD WINDOW
+//////////////
+ipcMain.on("showAddWindow", (event, content) => {
+  console.log(content);
+  createAddWindow(content);
+});
+
+function createAddWindow(content) {
+  addWindow = new BrowserWindow({
+    width: 600,
+    height: 610,
+    modal: true,
+    show: false,
+    parent: mainWindow, // Make sure to add parent window here
+
+    // Make sure to add webPreferences with below configuration
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
+    },
+  });
+
+  // Child window loads settings.html file
+  addWindow.loadFile(path.join(__dirname, "../add/add.html"), { query: { data: JSON.stringify(content) } });
+
+  addWindow.once("ready-to-show", () => {
+    addWindow.show();
+  });
+
+  ipcMain.on("close-add-window", (event, param) => {
+    if (addWindow) {
+      addWindow.close();
+      if (param.brand) mainWindow.webContents.send("reload-tiles", param);
+    }
+  });
+}
+
+
+
+//////////////
+//REMOVE WINDOW
+//////////////
+ipcMain.on("showRemoveWindow", (event, content) => {
+  console.log(content);
+  createRemoveWindow(content);
+});
+
+function createRemoveWindow(content) {
+  removeWindow = new BrowserWindow({
+    width: 400,
+    height: 350,
+    modal: true,
+    show: false,
+    parent: mainWindow, // Make sure to add parent window here
+
+    // Make sure to add webPreferences with below configuration
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
+    },
+  });
+
+  // Child window loads settings.html file
+  removeWindow.loadFile(path.join(__dirname, "../remove/remove.html"), { query: { data: JSON.stringify(content) } });
+
+  removeWindow.once("ready-to-show", () => {
+    removeWindow.show();
+  });
+
+  ipcMain.on("close-remove-window", (event, param) => {
+    if (removeWindow) {
+      removeWindow.close();
+      if (param.brand) mainWindow.webContents.send("reload-tiles", param);
+    }
+  });
+}
+
+
+
+
+
+///////////////////////////
+// SETUP WINDOW
+//////////////////////////
+ipcMain.on("showSetupWindow", (event, content) => {
+  createSetupWindow(content);
+});
+
 function createSetupWindow(content) {
   setupWindow = new BrowserWindow({
     width: 600,
@@ -84,10 +173,6 @@ function createSetupWindow(content) {
     setupWindow.show();
   });
 
-  ipcMain.on("showSetupWindow", (event, content) => {
-    createSetupWindow(content);
-  });
-
   ipcMain.on("close-setip-window", (event) => {
     if (setupWindow) {
       setupWindow.close();
@@ -95,19 +180,24 @@ function createSetupWindow(content) {
   });
 }
 
-ipcMain.on("showSetupWindow", (event, content) => {
-  createSetupWindow(content);
-});
-
 ipcMain.on("close-setup-window", (event) => {
   if (setupWindow) {
     setupWindow.close();
   }
 });
 
+////////////////////////
+// ABOUT WINDOW
+///////////////////////
+ipcMain.on("showAboutWindow", (event, content) => {
+  createAboutWindow(content);
+});
 
-
-
+ipcMain.on("close-about-window", (event) => {
+  if (aboutWindow) {
+    aboutWindow.close();
+  }
+});
 
 function createAboutWindow(content) {
   aboutWindow = new BrowserWindow({
@@ -133,13 +223,17 @@ function createAboutWindow(content) {
   });
 }
 
-ipcMain.on("showAboutWindow", (event, content) => {
-  createAboutWindow(content);
+///////////////////////////
+//CONFIG WINDOW (gear icon for each emulator)
+//////////////////////////
+ipcMain.on("configClick", (event, content) => {
+  createConfigWindow(content);
 });
-
-ipcMain.on("close-about-window", (event) => {
-  if (aboutWindow) {
-    aboutWindow.close();
+ipcMain.on("close-child-window", (event, param) => {
+  console.log(param);
+  if (configWindow) {
+    configWindow.close();
+    if (param.brand) mainWindow.webContents.send("reload-tiles", param);
   }
 });
 
@@ -167,28 +261,17 @@ function createConfigWindow(content) {
   });
 }
 
-ipcMain.on("configClick", (event, content) => {
-  createConfigWindow(content);
-});
-
-ipcMain.on("close-child-window", (event, param) => {
-  console.log(param);
-  if (configWindow) {
-    configWindow.close();
-    if (param.brand) mainWindow.webContents.send("reload-tiles", param);
-  }
-});
-
+/////////////////////////////
+// PLAY BUTTON
+////////////////////////////
 ipcMain.on("playClick", (event, content) => {
   //ROM PATH
   let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath);
- 
-  const r = execFile(content.system.path, parameter.split(" "), (error, stdout, stderr)=> {
-    if(error){
-      console.log(error)
+
+  const r = execFile(content.system.path, parameter.split(" "), (error, stdout, stderr) => {
+    if (error) {
+      console.log(error);
     }
-    console.log(stdout)
-  })
-
-
+    console.log(stdout);
+  });
 });

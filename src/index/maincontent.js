@@ -135,6 +135,18 @@ export function play(event) {
   ipcRenderer.send("playClick", emulator);
 }
 
+
+function remove(event) {
+  console.log('remove')
+  const element = event.target;
+  const brand = element.dataset.brand;
+  const name = element.dataset.name;
+  const emulator = findEmulator(getConfigFile().emulators, brand, name);
+
+  ipcRenderer.send("showRemoveWindow", emulator);
+
+}
+
 function favorite(event) {
   const element = event.target;
   const selectBrand = element.dataset.brand;
@@ -154,6 +166,3 @@ function favorite(event) {
   );
 }
 
-function remove(event) {
-  console.log("Todo");
-}

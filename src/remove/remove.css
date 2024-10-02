@@ -1,0 +1,80 @@
+/* Importando estilo base do PureCSS */
+/*@import 'https://unpkg.com/purecss@2.0.6/build/pure-min.css';*/
+
+/* Estilização do modal */
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background-color: white;
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+form {
+    visibility: hidden;
+}
+
+.modal-content {
+
+  text-align: center;
+
+}
+
+.icon {
+  font-size: 48px;
+  color: orange;
+  margin-bottom: 1rem;
+}
+
+.exclamation {
+  font-weight: bold;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cancel {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.delete {
+  background-color: #d9534f;
+  color: white;
+}
+
+.delete:hover {
+  background-color: #c9302c;
+}
+
+.cancel:hover {
+  background-color: #d5d5d5;
+}

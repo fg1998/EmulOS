@@ -6,9 +6,11 @@ const querystring = require("querystring");
 let query = querystring.parse(global.location.search);
 let data = JSON.parse(query["?data"]);
 
+
 let jsonResult = getConfigFile();
 let typeList = jsonResult.types;
 let brandList = jsonResult.brands;
+
 
 const brandComp = document.getElementById("brand");
 brandList.forEach((element) => {
@@ -24,17 +26,10 @@ typeList.forEach((element) => {
   const novoItem = document.createElement("option");
   novoItem.value = element.type;
   novoItem.textContent = element.name;
-  novoItem.selected = element.type == data.type;
+  //novoItem.selected = element.type == data.type;
   typeComp.appendChild(novoItem);
 });
 
-//document.getElementById("brand").value = data.brand;
-document.getElementById("originalBrand").value = data.brand;
-document.getElementById("name").value = data.name;
-document.getElementById("originalName").value = data.name;
-document.getElementById("desc").value = data.desc;
-//document.getElementById("type").value = data.type;
-document.getElementById("parameter").value = data.parameter;
 
 // SAVE BUTTON EVENT
 document.addEventListener("DOMContentLoaded", () => {
@@ -54,29 +49,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // SAVE BUTTON METHOD
 function save() {
-  var originalBrand = document.getElementById("originalBrand").value;
-  var selectBrand = document.getElementById("brand").value;
-  var name = document.getElementById("name").value;
-  var originalName = document.getElementById("originalName").value;
-  var desc = document.getElementById("desc").value;
-  var type = document.getElementById("type").value;
-  var parameter = document.getElementById("parameter").value;
+  var _brand = document.getElementById("brand").value;
+  var _name = document.getElementById("name").value;
+  var _desc = document.getElementById("desc").value;
+  var _type = document.getElementById("type").value;
+  var _parameter = document.getElementById("parameter").value;
+  var _image = document.getElementById("image").value;
 
   var jsonResult = getConfigFile();
 
-  const emulator = findEmulator(jsonResult.emulators, originalBrand, originalName);
+  const newEmulator = {
+    brand : _brand,
+    name : _name,
+    desc : _desc,
+    type : _type,
+    parameter : _parameter,
+    favorite : "false",
+    image : _image
+  }
 
-  emulator.name = name;
-  emulator.desc = desc;
-  emulator.type = type;
-  emulator.parameter = parameter;
-  emulator.brand = selectBrand;
+  jsonResult.emulators.push(newEmulator);
 
   saveConfigFile(jsonResult);
-  goToFirstWindow({brand :selectBrand, name : name});
+  goToFirstWindow({brand :_brand, name : _name});
 }
 
 //CANCEL BUTTON METHOD
 export function goToFirstWindow(param) {
-  ipcRenderer.send("close-setup-window", param);
+  ipcRenderer.send("close-add-window", param);
 }

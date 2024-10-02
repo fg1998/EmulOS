@@ -159,20 +159,11 @@
     },
     {
       "brand": "amiga",
-      "name": "Amiga 500",
+      "name": "Amiga 5001",
       "desc": "16 Bit computer",
       "type": "amiga",
       "favorite": "false",
       "image": "a500.png",
-      "parameter": "--machine ACE --fullscreen"
-    },
-    {
-      "brand": "amiga",
-      "name": "Amiga 1200",
-      "desc": "16 Bit computer, AGA graphics",
-      "type": "amiga",
-      "favorite": "false",
-      "image": "a1200.png",
       "parameter": "--machine ACE --fullscreen"
     },
     {
@@ -181,6 +172,7 @@
       "desc": "Brazilian MSX 1.2",
       "type": "msx",
       "favorite": "true",
+      "image": "hotbit.png",
       "parameter": "Sharp_HB-8000_1.2"
     },
     {
@@ -189,6 +181,7 @@
       "desc": "Brazilian MSX 1",
       "type": "msx",
       "favorite": "true",
+      "image": "expert.png",
       "parameter": "Gradiente_Expert_GPC-1"
     },
     {
@@ -202,8 +195,9 @@
     {
       "brand": "msx",
       "name": "FS-5500 F2",
-      "desc": "Panasonic FS-5500 F2 MSX 2",
+      "desc": "Nationa FS-5500 F2 MSX2",
       "type": "msx",
+      "image": "5500.png",
       "favorite": false,
       "parameter": "National_FS-5500F2"
     },
@@ -213,6 +207,7 @@
       "desc": "Panasonic MSX2+",
       "type": "msx",
       "favorite": false,
+      "image": "fsa1wsx.png",
       "parameter": "Panasonic_FS-A1WSX"
     },
     {
@@ -229,6 +224,7 @@
       "desc": "Panasonic MSX Turbo R",
       "type": "msx",
       "favorite": false,
+      "image": "fsa1gt.png",
       "parameter": "Panasonic_FS-A1GT"
     }
   ]

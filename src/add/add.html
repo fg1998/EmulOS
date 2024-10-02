@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="../../node_modules/purecss/build/pure-min.css" />
     <link rel="stylesheet" href="../../node_modules/purecss/build/grids-responsive-min.css" />
     <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="./setup.css" />
+    <link rel="stylesheet" href="./add.css" />
 
     <style></style>
   </head>
   <body>
-    <h1>SETUP</h1>
+    <h1>ADD</h1>
     <form class="pure-form pure-g pure-form-stacked">
       <fieldset>
         <div class="pure-g">
@@ -20,11 +20,9 @@
           <div class="pure-u-3-4">
             <select id="brand" class="pure-input-1"></select>
           </div>
-          <input type="hidden" id="originalBrand" />
           
           <div class="pure-u-1-4"><label>Name</label></div>
           <div class="pure-u-3-4"><input type="text" class="pure-input-1" id="name" /></div>
-          <input type="hidden" id="originalName" />
           
           <div class="pure-u-1-4"><label>Desc</label></div>
           <div class="pure-u-3-4"><input type="text" class="pure-input-1" id="desc" /></div>
@@ -33,6 +31,9 @@
           <div class="pure-u-3-4">
             <select id="type" class="pure-input-1"></select>
           </div>
+
+          <div class="pure-u-1-4"><label>Image</label></div>
+          <div class="pure-u-3-4"><input type="text" class="pure-input-1" id="image" /></div>
 
           <div class="pure-u-1-4"><label>Parameter</label></div>
           <div class="pure-u-3-4"><textarea rows="5" id="parameter" class="pure-input-1"></textarea></div>
@@ -45,7 +46,7 @@
       <div class="pure-u-1-4"><button class="pure-button" id="btnSave">Save</button></div>
     </div>
 
-    <script type="module" src="setup.js"></script>
+    <script type="module" src="add.js"></script>
     <script></script>
   </body>
 </html>
