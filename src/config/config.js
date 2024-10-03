@@ -6,6 +6,8 @@ const querystring = require("querystring");
 let query = querystring.parse(global.location.search);
 let data = JSON.parse(query["?data"]);
 
+console.log(data)
+
 let jsonResult = getConfigFile();
 let typeList = jsonResult.types;
 let brandList = jsonResult.brands;
@@ -15,7 +17,7 @@ brandList.forEach((element) => {
   const novoItem = document.createElement("option");
   novoItem.value = element.name;
   novoItem.textContent = element.desc;
-  novoItem.selected = element.name == data.brand;
+  novoItem.selected = element.name == data.content.brand;
   brandComp.appendChild(novoItem);
 });
 
@@ -24,17 +26,17 @@ typeList.forEach((element) => {
   const novoItem = document.createElement("option");
   novoItem.value = element.type;
   novoItem.textContent = element.name;
-  novoItem.selected = element.type == data.type;
+  novoItem.selected = element.type == data.content.type;
   typeComp.appendChild(novoItem);
 });
 
 //document.getElementById("brand").value = data.brand;
-document.getElementById("originalBrand").value = data.brand;
-document.getElementById("name").value = data.name;
-document.getElementById("originalName").value = data.name;
-document.getElementById("desc").value = data.desc;
+document.getElementById("originalBrand").value = data.content.brand;
+document.getElementById("name").value = data.content.name;
+document.getElementById("originalName").value = data.content.name;
+document.getElementById("desc").value = data.content.desc;
 //document.getElementById("type").value = data.type;
-document.getElementById("parameter").value = data.parameter;
+document.getElementById("parameter").value = data.content.parameter;
 
 // SAVE BUTTON EVENT
 document.addEventListener("DOMContentLoaded", () => {
@@ -48,9 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const cancelButton = document.getElementById("btnCancel");
   if (cancelButton) {
-    cancelButton.addEventListener("click", goToFirstWindow);
+    cancelButton.addEventListener("click", cancel);
   }
 });
+
+function cancel() {
+  goToFirstWindow(null)
+}
 
 // SAVE BUTTON METHOD
 function save() {
@@ -78,5 +84,5 @@ function save() {
 
 //CANCEL BUTTON METHOD
 export function goToFirstWindow(param) {
-  ipcRenderer.send("close-child-window", param);
+  ipcRenderer.send("close-dialog-window", param);
 }

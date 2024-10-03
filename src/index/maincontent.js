@@ -1,5 +1,5 @@
 import { findEmulator, getConfig, getConfigFile, saveConfigFile } from "../util.js";
-const { ipcRenderer } = require("electron");
+const { ipcRenderer, contentTracing } = require("electron");
 
 export function doTiles(brandName, machineBrand) {
   const content = document.getElementById("content");
@@ -113,9 +113,12 @@ function config(event) {
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
+
   const emulator = findEmulator(getConfigFile().emulators, brand, name);
 
-  ipcRenderer.send("configClick", emulator);
+  const content = { width : 600, height : 610, type : 'config', content: emulator }
+  ipcRenderer.send("showDialogWindow", content);
+
 }
 
 export function play(event) {
@@ -137,13 +140,12 @@ export function play(event) {
 
 
 function remove(event) {
-  console.log('remove')
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
   const emulator = findEmulator(getConfigFile().emulators, brand, name);
-
-  ipcRenderer.send("showRemoveWindow", emulator);
+  const content = { width : 400, height : 350, type : 'remove', content: emulator }
+  ipcRenderer.send("showDialogWindow", content);
 
 }
 

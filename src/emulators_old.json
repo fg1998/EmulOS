@@ -159,7 +159,7 @@
     },
     {
       "brand": "amiga",
-      "name": "Amiga 5001",
+      "name": "Amiga 500",
       "desc": "16 Bit computer",
       "type": "amiga",
       "favorite": "false",
@@ -228,14 +228,13 @@
       "parameter": "Panasonic_FS-A1GT"
     },
     {
-      "brand": "amiga",
-      "name": "Amiga 600",
-      "des": "foobar teste",
-      "type": "amiga",
-      "parameter": "-m a600",
+      "brand": "apple2",
+      "name": "tttt",
+      "desc": "yyyyy",
+      "type": "fuse",
+      "parameter": "",
       "favorite": "false",
-      "image": "",
-      "desc": "foo"
+      "image": ""
     }
   ]
 }

@@ -2,5 +2,5 @@
 const { ipcRenderer } = require("electron");
 
 function closeAboutWindow() {
-    ipcRenderer.send("close-about-window");
+    ipcRenderer.send("close-dialog-window");
 }

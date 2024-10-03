@@ -1,16 +1,23 @@
 const { ipcRenderer } = require("electron");
 
 function aboutWindow() {
-  ipcRenderer.send("showAboutWindow");
+  const content = { width: 500, height : 510, type :"about"}
+  ipcRenderer.send("showDialogWindow", content);
 }
 
 function setupWindow() {
-  ipcRenderer.send("showSetupWindow");
+  //ipcRenderer.send("showSetupWindow");
+  const content = { width: 600, height : 610, type :"setup"}
+  ipcRenderer.send("showDialogWindow", content);
+  
 }
 
 function addWindow() {
   const selectedItem = document.querySelector("li.pure-menu-selected-background");
   const selectedBrand = selectedItem.getAttribute("data-brand");
-  ipcRenderer.send("showAddWindow", { brand: selectedBrand });
+
+  const content = { width: 600, height : 610, type :"add", brand : selectedBrand}
+  ipcRenderer.send("showDialogWindow", content);
+  //ipcRenderer.send("showAddWindow", { brand: selectedBrand });
 }
 

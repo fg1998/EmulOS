@@ -43,9 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const cancelButton = document.getElementById("btnCancel");
   if (cancelButton) {
-    cancelButton.addEventListener("click", goToFirstWindow);
+    cancelButton.addEventListener("click", cancel);
   }
 });
+
+function cancel() {
+  goToFirstWindow(null)
+}
 
 // SAVE BUTTON METHOD
 function save() {
@@ -74,7 +78,7 @@ function save() {
   goToFirstWindow({brand :_brand, name : _name});
 }
 
-//CANCEL BUTTON METHOD
+
 export function goToFirstWindow(param) {
-  ipcRenderer.send("close-add-window", param);
+  ipcRenderer.send("close-dialog-window", param);
 }

@@ -42,6 +42,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-function aboutWindow() {
-  console.log('abour')
-}
+
