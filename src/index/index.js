@@ -1,13 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
+const { ipcRenderer } = require("electron");
 const path = require("node:path");
-
-const { spawn } = require('child_process');
-const { exec } = require("node:child_process");
-
-require('./dialog.js')
-
-const execFile = require("child_process").execFile;
-
+const { spawn } = require("node:child_process");
+//require("./dialog.js");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -38,7 +33,7 @@ const createWindow = () => {
   });
 
   // Set mainwindow as global to be acessed by dialog.js
-  global.mainWindow = mainWindow
+  global.mainWindow = mainWindow;
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "index.html"));
@@ -69,38 +64,63 @@ app.on("window-all-closed", () => {
   }
 });
 
-
 /////////////////////////////
 // PLAY BUTTON
 ////////////////////////////
 
 ipcMain.on("playClick", async (event, content) => {
-  console.log('play')
+  console.log("play");
   //ROM PATH
   let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath);
 
-  const emulatorProcess = spawn(content.system.path, parameter.split(" "))
+  const emulatorProcess = spawn(content.system.path, parameter.split(" "));
 
-  emulatorProcess.stdout.on('data', (data) => {
-    console.log(data.toString())
-    event.reply('console-data', data.toString());
-   
-  });
+  emulatorProcess.on("error", (err) => {
+    
+    console.log("deu pau", err);
+    const content = { width : 600, height : 450, type : 'error', err : err }
+    createDialogWindow(content)
 
-  emulatorProcess.stderr.on('data', (data) => {
-    //event.reply('console-data', `Erro: ${data.toString()}`);
-    console.log(data.toString())
   });
 
-  emulatorProcess.on('close', (code) => {
-    event.reply('console-data', `Emulador fechado com código ${code}`);
-  });
-  /*
-  const r = execFile(content.system.path, parameter.split(" "), (error, stdout, stderr) => {
-    if (error) {
-      console.log(error);
-    }
-    console.log(r);
-  });
-  */
 });
+
+
+
+
+
+ipcMain.on("showDialogWindow", (event, content) => {
+  createDialogWindow(content);
+});
+
+ function createDialogWindow(_content) {
+  dialogWindow = new BrowserWindow({
+    autoHideMenuBar: true,
+    width: _content.width,
+    height: _content.height,
+    modal: true,
+    show: false,
+    parent: global.mainWindow, // Make sure to add parent window here
+
+    // Make sure to add webPreferences with below configuration
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+      enableRemoteModule: true,
+    },
+  });
+
+  // Child window loads settings.html file
+  dialogWindow.loadFile(path.join(__dirname, `../${_content.type}/${_content.type}.html`), { query: { data: JSON.stringify(_content) } });
+
+  dialogWindow.once("ready-to-show", () => {
+    dialogWindow.show();
+  });
+
+  ipcMain.on("close-dialog-window", (event, param) => {
+    if (dialogWindow) {
+      dialogWindow.close();
+      if (param) mainWindow.webContents.send("reload-tiles", param);
+    }
+  });
+}
