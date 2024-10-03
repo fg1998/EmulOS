@@ -76,24 +76,17 @@ ipcMain.on("playClick", async (event, content) => {
   const emulatorProcess = spawn(content.system.path, parameter.split(" "));
 
   emulatorProcess.on("error", (err) => {
-    
     console.log("deu pau", err);
-    const content = { width : 600, height : 450, type : 'error', err : err }
-    createDialogWindow(content)
-
+    const content = { width: 600, height: 450, type: "error", err: err };
+    createDialogWindow(content);
   });
-
 });
-
-
-
-
 
 ipcMain.on("showDialogWindow", (event, content) => {
   createDialogWindow(content);
 });
 
- function createDialogWindow(_content) {
+function createDialogWindow(_content) {
   dialogWindow = new BrowserWindow({
     autoHideMenuBar: true,
     width: _content.width,
@@ -116,8 +109,6 @@ ipcMain.on("showDialogWindow", (event, content) => {
   dialogWindow.once("ready-to-show", () => {
     dialogWindow.show();
   });
-
-  
 }
 
 ipcMain.on("close-dialog-window", (event, param) => {

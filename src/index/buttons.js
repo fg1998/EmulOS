@@ -7,7 +7,7 @@ function aboutWindow() {
 
 function setupWindow() {
   //ipcRenderer.send("showSetupWindow");
-  const content = { width: 600, height : 610, type :"setup"}
+  const content = { width: 800, height : 510, type :"setup"}
   ipcRenderer.send("showDialogWindow", content);
   
 }

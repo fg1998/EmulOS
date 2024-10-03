@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../../node_modules/purecss/build/pure-min.css" />
+    <link rel="stylesheet" href="../../node_modules/purecss/build/grids-responsive-min.css" />
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="./setup.css" />
+
+    <style></style>
+  </head>
+  <body>
+    <div class="tabs-container">
+      <input type="radio" name="tab" id="tab1" checked />
+      <label for="tab1" class="tab-label">General</label>
+
+      <input type="radio" name="tab" id="tab2" />
+      <label for="tab2" class="tab-label">Brands</label>
+
+      <input type="radio" name="tab" id="tab3" />
+      <label for="tab3" class="tab-label">Emulator Types</label>
+
+      <div class="tab-content">
+        <div id="content1">
+          <form class="pure-form pure-g pure-form-stacked">
+            <div class="pure-g">
+              <div class="pure-u-1-5"><label>Rompath</label></div>
+              <div class="pure-u-4-5">
+                <input type="text" class="pure-input-1" id="rompath" />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div id="content2">
+          <form class="pure-form pure-g pure-form-stacked">
+            <div class="pure-g">
+              <div class="pure-u-1-5"><label>Brand</label></div>
+              <div class="pure-u-4-5">
+                <select id="brandName" class="pure-input-1"></select>
+              </div>
+              <div class="pure-u-1-5"><label>Brand</label></div>
+              <div class="pure-u-4-5">
+                <input type="text" class="pure-input-1" id="brandDesc" />
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+
+        <div id="content3">
+          <h2>Albert Einstein</h2>
+          <p>German-born theoretical physicist, widely acknowledged to be one of the greatest and most influential physicists of all time.</p>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <button class="pure-button" id="btnSave">Save</button>
+      <button class="pure-button" id="btnCancel">Cancel</button>
+    </div>
+
+    <script type="module" src="setup.js"></script>
+  </body>
+</html>
