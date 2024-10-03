@@ -162,7 +162,7 @@
       "name": "Amiga 5001",
       "desc": "16 Bit computer",
       "type": "amiga",
-      "favorite": "false",
+      "favorite": "true",
       "image": "a500.png",
       "parameter": "--machine ACE --fullscreen"
     },

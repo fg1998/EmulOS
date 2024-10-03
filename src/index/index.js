@@ -117,10 +117,12 @@ ipcMain.on("showDialogWindow", (event, content) => {
     dialogWindow.show();
   });
 
-  ipcMain.on("close-dialog-window", (event, param) => {
-    if (dialogWindow) {
-      dialogWindow.close();
-      if (param) mainWindow.webContents.send("reload-tiles", param);
-    }
-  });
+  
 }
+
+ipcMain.on("close-dialog-window", (event, param) => {
+  if (dialogWindow) {
+    dialogWindow.close();
+    if (param) mainWindow.webContents.send("reload-tiles", param);
+  }
+});
