@@ -82,6 +82,7 @@ ipcMain.on("playClick", async (event, content) => {
   const emulatorProcess = spawn(content.system.path, parameter.split(" "))
 
   emulatorProcess.stdout.on('data', (data) => {
+    console.log(data.toString())
     event.reply('console-data', data.toString());
    
   });
