@@ -226,15 +226,6 @@
       "favorite": false,
       "image": "fsa1gt.png",
       "parameter": "Panasonic_FS-A1GT"
-    },
-    {
-      "brand": "apple2",
-      "name": "tttt",
-      "desc": "yyyyy",
-      "type": "fuse",
-      "parameter": "",
-      "favorite": "false",
-      "image": ""
     }
   ]
 }
