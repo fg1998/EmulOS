@@ -1,7 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
+require('./dialog.js')
 
 const execFile = require("child_process").execFile;
+const exec = require('child_process').exec
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -30,6 +32,9 @@ const createWindow = () => {
       preload: path.join(__dirname, "preload.js"),
     },
   });
+
+  // Set mainwindow as global to be acessed by dialog.js
+  global.mainWindow = mainWindow
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "index.html"));
@@ -60,55 +65,20 @@ app.on("window-all-closed", () => {
   }
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////
-ipcMain.on("showDialogWindow", (event, content) => {
-  createDialogWindow(content);
-});
-
-function createDialogWindow(_content) {
-  dialogWindow = new BrowserWindow({
-    autoHideMenuBar: true,
-    width: _content.width,
-    height: _content.height,
-    modal: true,
-    show: false,
-    parent: mainWindow, // Make sure to add parent window here
-
-    // Make sure to add webPreferences with below configuration
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false,
-      enableRemoteModule: true,
-    },
-  });
-
-  // Child window loads settings.html file
-  dialogWindow.loadFile(path.join(__dirname, `../${_content.type}/${_content.type}.html`), { query: { data: JSON.stringify(_content) } });
-
-  dialogWindow.once("ready-to-show", () => {
-    dialogWindow.show();
-  });
-
-  ipcMain.on("close-dialog-window", (event, param) => {
-    if (dialogWindow) {
-      dialogWindow.close();
-      if (param) mainWindow.webContents.send("reload-tiles", param);
-    }
-  });
-}
-
 
 /////////////////////////////
 // PLAY BUTTON
 ////////////////////////////
+
 ipcMain.on("playClick", (event, content) => {
+  console.log('play')
   //ROM PATH
   let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath);
 
-  const r = execFile(content.system.path, parameter.split(" "), (error, stdout, stderr) => {
+  const r = exec(content.system.path, parameter.split(" "), (error, stdout, stderr) => {
     if (error) {
       console.log(error);
     }
-    console.log(stdout);
+    console.log(r);
   });
 });

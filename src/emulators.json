@@ -159,7 +159,7 @@
     },
     {
       "brand": "amiga",
-      "name": "Amiga 500",
+      "name": "Amiga 5001",
       "desc": "16 Bit computer",
       "type": "amiga",
       "favorite": "false",
@@ -226,6 +226,15 @@
       "favorite": false,
       "image": "fsa1gt.png",
       "parameter": "Panasonic_FS-A1GT"
+    },
+    {
+      "brand": "amiga",
+      "name": "Amiga 1200",
+      "desc": "First AGA amiga computer",
+      "type": "amiga",
+      "parameter": "",
+      "favorite": "false",
+      "image": ""
     }
   ]
 }
