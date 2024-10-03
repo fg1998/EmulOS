@@ -135,7 +135,8 @@ export function play(event) {
   emulator.system = ret;
   emulator.config = config;
 
-  ipcRenderer.send("playClick", emulator);
+  var foo = ipcRenderer.send("playClick", emulator);
+  console.log(foo)
 }
 
 

@@ -1,9 +1,13 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("node:path");
+
+const { spawn } = require('child_process');
+const { exec } = require("node:child_process");
+
 require('./dialog.js')
 
 const execFile = require("child_process").execFile;
-const exec = require('child_process').exec
+
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -70,15 +74,32 @@ app.on("window-all-closed", () => {
 // PLAY BUTTON
 ////////////////////////////
 
-ipcMain.on("playClick", (event, content) => {
+ipcMain.on("playClick", async (event, content) => {
   console.log('play')
   //ROM PATH
   let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath);
 
-  const r = exec(content.system.path, parameter.split(" "), (error, stdout, stderr) => {
+  const emulatorProcess = spawn(content.system.path, parameter.split(" "))
+
+  emulatorProcess.stdout.on('data', (data) => {
+    event.reply('console-data', data.toString());
+   
+  });
+
+  emulatorProcess.stderr.on('data', (data) => {
+    //event.reply('console-data', `Erro: ${data.toString()}`);
+    console.log(data.toString())
+  });
+
+  emulatorProcess.on('close', (code) => {
+    event.reply('console-data', `Emulador fechado com código ${code}`);
+  });
+  /*
+  const r = execFile(content.system.path, parameter.split(" "), (error, stdout, stderr) => {
     if (error) {
       console.log(error);
     }
     console.log(r);
   });
+  */
 });
