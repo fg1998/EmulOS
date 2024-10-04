@@ -114,9 +114,9 @@ function config(event) {
   const brand = element.dataset.brand;
   const name = element.dataset.name;
 
-  const emulator = findEmulator(getConfigFile().emulators, brand, name);
+  const emulator = findEmulator(getConfigFile().systems, brand, name);
 
-  const content = { width : 600, height : 610, type : 'config', content: emulator }
+  const content = { width : 600, height : 460, type : 'config', content: emulator }
   ipcRenderer.send("showDialogWindow", content);
 
 }
@@ -126,7 +126,7 @@ export function play(event) {
   const brand = element.dataset.brand;
   const name = element.dataset.name;
 
-  const emulator = findEmulator(getConfigFile().emulators, brand, name);
+  const emulator = findEmulator(getConfigFile().systems, brand, name);
   // We know the emulator type, now we need the type command and parameters
 
   let jsonSystems = getConfigFile().types;
@@ -135,7 +135,7 @@ export function play(event) {
   emulator.system = ret;
   emulator.config = config;
 
-  var foo = ipcRenderer.send("playClick", emulator);
+  //var foo = ipcRenderer.send("playClick", emulator);
   console.log(foo)
 }
 
@@ -144,7 +144,7 @@ function remove(event) {
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
-  const emulator = findEmulator(getConfigFile().emulators, brand, name);
+  const emulator = findEmulator(getConfigFile().systems, brand, name);
   const content = { width : 400, height : 350, type : 'remove', content: emulator }
   ipcRenderer.send("showDialogWindow", content);
 
@@ -158,14 +158,14 @@ function favorite(event) {
 
   const jsonResult = getConfigFile();
 
-  const emulator = findEmulator(jsonResult.emulators, selectBrand, name);
+  const emulator = findEmulator(jsonResult.systems, selectBrand, name);
   emulator.favorite = favorite == "true" ? "false" : "true";
 
   saveConfigFile(jsonResult);
   //const machineBrand = jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator;
   doTiles(
     selectBrand,
-    jsonResult.emulators.filter((emulator) => emulator.brand == selectBrand)
+    jsonResult.systems.filter((system) => system.brand == selectBrand)
   );
 }
 

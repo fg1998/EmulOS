@@ -42,9 +42,9 @@ function remove() {
 
   var jsonResult = getConfigFile();
 
-  const indice = jsonResult.emulators.findIndex((emulador) => emulador.name === _name && emulador.brand === _brand);
+  const indice = jsonResult.systems.findIndex((system) => system.name === _name && system.brand === _brand);
 
-  jsonResult.emulators.splice(indice, 1);
+  jsonResult.systems.splice(indice, 1);
 
   saveConfigFile(jsonResult);
   goToFirstWindow({ brand: _brand, name: _name });

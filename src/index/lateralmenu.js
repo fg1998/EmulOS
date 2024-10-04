@@ -56,12 +56,12 @@ function selectBrand(event) {
   if (selectBrand == "favorites") {
     doTiles(
       "favorites",
-      jsonResult.emulators.filter((emulator) => emulator.favorite == "true")
+      jsonResult.systems.filter((system) => system.favorite == "true")
     );
   } else {
     doTiles(
       selectBrand,
-      jsonResult.emulators.filter((emulator) => emulator.brand == selectBrand)
+      jsonResult.systems.filter((system) => system.brand == selectBrand)
     );
   }
 }

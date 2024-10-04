@@ -16,10 +16,10 @@ const menuItem = document.querySelector(`li[data-brand='${firstBrand}']`);
 menuItem.classList.add("pure-menu-selected-background");
 const menuIcon = document.querySelector(`i[data-brand='${firstBrand}']`);
 
-const emulators = jsonResult.emulators.filter((emulator) => emulator.brand == firstBrand);
+const systems = jsonResult.systems.filter((system) => system.brand == firstBrand);
 
 //FROM maincontent.js
-doTiles(firstBrand, emulators);
+doTiles(firstBrand, systems);
 
 ipcRenderer.on("reload-tiles", function (evt, param) {
   var jsonResult = getConfigFile()
@@ -29,7 +29,7 @@ ipcRenderer.on("reload-tiles", function (evt, param) {
   //doTiles(param.brand, jsonResult.emulators.brand.find((brand) => brand.name == selectBrand).emulator);
   doTiles(
     selectBrand,
-    jsonResult.emulators.filter((emulator) => emulator.brand == selectBrand)
+    jsonResult.systems.filter((system) => system.brand == selectBrand)
   );
 
 });

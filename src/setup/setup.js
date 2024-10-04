@@ -2,14 +2,14 @@
 const { ipcRenderer } = require("electron");
 import { findEmulator, getConfigFile, saveConfigFile } from "../util.js";
 
-
 let jsonResult = getConfigFile();
 let typeList = jsonResult.types;
 let brandList = jsonResult.brands;
-let config = jsonResult.config
+let config = jsonResult.config;
 
-document.getElementById('rompath').value = config.rompath
+// Read and Set values from configFile
 
+document.getElementById("rompath").value = config.rompath;
 
 const brandComp = document.getElementById("brandName");
 brandList.forEach((element) => {
@@ -22,18 +22,46 @@ brandList.forEach((element) => {
 brandComp.addEventListener("change", (event) => {
   const selectedOption = event.target.value; // Valor do option selecionado
   console.log("Marca selecionada:", selectedOption);
-  showBrandDesc(selectedOption)
+  showBrandDesc(selectedOption);
 });
 
-showBrandDesc(brandComp.options[0].value)
+showBrandDesc(brandComp.options[0].value);
 
-function showBrandDesc(brandName) {
+export function showBrandDesc(brandName) {
   //var firstBrand = brandComp.options[0].value;
-  var selectedBrand = brandList.find(x=> x.name == brandName)
-  document.getElementById('brandDesc').value = selectedBrand.desc
+  var selectedBrand = brandList.find((x) => x.name == brandName);
+  document.getElementById("brandDesc").value = selectedBrand.desc;
 }
 
+// SAVE BUTTON EVENT
+document.addEventListener("DOMContentLoaded", () => {
+  const saveButton = document.getElementById("btnSaveGeneral");
+  if (saveButton) {
+    saveButton.addEventListener("click", saveGeneral);
+  }
+});
 
+// CANCEL BUTTON EVENT
+document.addEventListener("DOMContentLoaded", () => {
+  const cancelButton = document.getElementById("btnCancel");
+  if (cancelButton) {
+    cancelButton.addEventListener("click", cancel);
+  }
+});
+
+function cancel() {
+  goToFirstWindow(null);
+}
+
+function saveGeneral() {
+  let jsonResult = getConfigFile();
+
+  var _romPath = document.getElementById("rompath").value;
+  jsonResult.config.rompath = _romPath;
+  console.log(jsonResult.config);
+
+  saveConfigFile(jsonResult);
+}
 
 /*
 const brandComp = document.getElementById("brand");
@@ -63,25 +91,7 @@ document.getElementById("desc").value = data.content.desc;
 document.getElementById("parameter").value = data.content.parameter;
 */
 
-// SAVE BUTTON EVENT
-document.addEventListener("DOMContentLoaded", () => {
-  const saveButton = document.getElementById("btnSave");
-  if (saveButton) {
-    saveButton.addEventListener("click", save);
-  }
-});
 
-// CANCEL BUTTON EVENT
-document.addEventListener("DOMContentLoaded", () => {
-  const cancelButton = document.getElementById("btnCancel");
-  if (cancelButton) {
-    cancelButton.addEventListener("click", cancel);
-  }
-});
-
-function cancel() {
-  goToFirstWindow(null)
-}
 
 // SAVE BUTTON METHOD
 function save() {
@@ -104,7 +114,7 @@ function save() {
   emulator.brand = selectBrand;
 
   saveConfigFile(jsonResult);
-  goToFirstWindow({brand :selectBrand, name : name});
+  goToFirstWindow({ brand: selectBrand, name: name });
 }
 
 //CANCEL BUTTON METHOD

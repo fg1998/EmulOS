@@ -23,6 +23,9 @@
       <label for="tab3" class="tab-label">Emulator Types</label>
 
       <div class="tab-content">
+        
+        
+        
         <div id="content1">
           <form class="pure-form pure-g pure-form-stacked">
             <div class="pure-g">
@@ -32,8 +35,14 @@
               </div>
             </div>
           </form>
+          <div class="button-container">
+            <button class="pure-button" id="btnSaveGeneral">Save</button>
+          </div>
         </div>
 
+        
+        
+        
         <div id="content2">
           <form class="pure-form pure-g pure-form-stacked">
             <div class="pure-g">
@@ -41,7 +50,7 @@
               <div class="pure-u-4-5">
                 <select id="brandName" class="pure-input-1"></select>
               </div>
-              <div class="pure-u-1-5"><label>Brand</label></div>
+              <div class="pure-u-1-5"><label>Description</label></div>
               <div class="pure-u-4-5">
                 <input type="text" class="pure-input-1" id="brandDesc" />
               </div>
@@ -49,17 +58,47 @@
           </form>
         </div>
 
-
-
+        
+        
+        
         <div id="content3">
-          <h2>Albert Einstein</h2>
-          <p>German-born theoretical physicist, widely acknowledged to be one of the greatest and most influential physicists of all time.</p>
-        </div>
+          <form class="pure-form pure-g pure-form-stacked">
+            <fieldset>
+              <div class="pure-g">
+
+                <div class="pure-u-1-4"><label>Name</label></div>
+                <div class="pure-u-3-4"><input type="text" class="pure-input-1" id="typeName" /></div>
+                <input type="hidden" id="originalTypeName" />
+
+                <div class="pure-u-1-4"><label>Brand</label></div>
+                <div class="pure-u-3-4">
+                  <select id="typeBrand" class="pure-input-1"></select>
+                </div>
+                <input type="hidden" id="originalTypeBrand" />
+                
+                
+                
+                <div class="pure-u-1-4"><label>Desc</label></div>
+                <div class="pure-u-3-4"><input type="text" class="pure-input-1" id="typeDesc" /></div>
+      
+                <div class="pure-u-1-4"><label>Type</label></div>
+                <div class="pure-u-3-4">
+                  <select id="type" class="pure-input-1"></select>
+                </div>
+      
+                <div class="pure-u-1-4"><label>Parameter</label></div>
+                <div class="pure-u-3-4"><textarea rows="5" id="parameter" class="pure-input-1"></textarea></div>
+              </div>
+            </fieldset>
+          </form>
+
+
+       
+
       </div>
-    </div>
-    <div class="button-container">
-      <button class="pure-button" id="btnSave">Save</button>
-      <button class="pure-button" id="btnCancel">Cancel</button>
+      <div class="button-container">
+        <button class="pure-button" id="btnCancel">Cancel</button>
+      </div>
     </div>
 
     <script type="module" src="setup.js"></script>

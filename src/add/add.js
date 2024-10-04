@@ -8,7 +8,7 @@ let data = JSON.parse(query["?data"]);
 
 
 let jsonResult = getConfigFile();
-let typeList = jsonResult.types;
+let emulatorList = jsonResult.emulators;
 let brandList = jsonResult.brands;
 
 
@@ -21,13 +21,12 @@ brandList.forEach((element) => {
   brandComp.appendChild(novoItem);
 });
 
-const typeComp = document.getElementById("type");
-typeList.forEach((element) => {
+const emulatorComp = document.getElementById("emulator");
+emulatorList.forEach((element) => {
   const novoItem = document.createElement("option");
-  novoItem.value = element.type;
+  novoItem.value = element.key;
   novoItem.textContent = element.name;
-  //novoItem.selected = element.type == data.type;
-  typeComp.appendChild(novoItem);
+  emulatorComp.appendChild(novoItem);
 });
 
 
@@ -56,23 +55,23 @@ function save() {
   var _brand = document.getElementById("brand").value;
   var _name = document.getElementById("name").value;
   var _desc = document.getElementById("desc").value;
-  var _type = document.getElementById("type").value;
+  var _emulator = document.getElementById("emulator").value;
   var _parameter = document.getElementById("parameter").value;
   var _image = document.getElementById("image").value;
 
   var jsonResult = getConfigFile();
 
-  const newEmulator = {
+  const newSystem = {
     brand : _brand,
     name : _name,
     desc : _desc,
-    type : _type,
+    emulator : _emulator,
     parameter : _parameter,
     favorite : "false",
     image : _image
   }
 
-  jsonResult.emulators.push(newEmulator);
+  jsonResult.systems.push(newSystem);
 
   saveConfigFile(jsonResult);
   goToFirstWindow({brand :_brand, name : _name});

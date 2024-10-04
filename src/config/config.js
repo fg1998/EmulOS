@@ -9,7 +9,7 @@ let data = JSON.parse(query["?data"]);
 console.log(data)
 
 let jsonResult = getConfigFile();
-let typeList = jsonResult.types;
+let emulatorList = jsonResult.emulators;
 let brandList = jsonResult.brands;
 
 const brandComp = document.getElementById("brand");
@@ -21,21 +21,19 @@ brandList.forEach((element) => {
   brandComp.appendChild(novoItem);
 });
 
-const typeComp = document.getElementById("type");
-typeList.forEach((element) => {
+const emulatorComp = document.getElementById("emulator");
+emulatorList.forEach((element) => {
   const novoItem = document.createElement("option");
-  novoItem.value = element.type;
+  novoItem.value = element.key;
   novoItem.textContent = element.name;
-  novoItem.selected = element.type == data.content.type;
-  typeComp.appendChild(novoItem);
+  novoItem.selected = element.key == data.content.emulator;
+  emulatorComp.appendChild(novoItem);
 });
 
-//document.getElementById("brand").value = data.brand;
 document.getElementById("originalBrand").value = data.content.brand;
 document.getElementById("name").value = data.content.name;
 document.getElementById("originalName").value = data.content.name;
 document.getElementById("desc").value = data.content.desc;
-//document.getElementById("type").value = data.type;
 document.getElementById("parameter").value = data.content.parameter;
 
 // SAVE BUTTON EVENT
@@ -65,18 +63,18 @@ function save() {
   var name = document.getElementById("name").value;
   var originalName = document.getElementById("originalName").value;
   var desc = document.getElementById("desc").value;
-  var type = document.getElementById("type").value;
+  var emulator = document.getElementById("emulator").value;
   var parameter = document.getElementById("parameter").value;
 
   var jsonResult = getConfigFile();
 
-  const emulator = findEmulator(jsonResult.emulators, originalBrand, originalName);
+  const system = findEmulator(jsonResult.systems, originalBrand, originalName);
 
-  emulator.name = name;
-  emulator.desc = desc;
-  emulator.type = type;
-  emulator.parameter = parameter;
-  emulator.brand = selectBrand;
+  system.name = name;
+  system.desc = desc;
+  system.emulator = emulator;
+  system.parameter = parameter;
+  system.brand = selectBrand;
 
   saveConfigFile(jsonResult);
   goToFirstWindow({brand :selectBrand, name : name});
