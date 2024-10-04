@@ -1,4 +1,4 @@
-import { findEmulator, getConfig, getConfigFile, saveConfigFile } from "../util.js";
+import { findSystem, getConfig, getConfigFile, saveConfigFile } from "../util.js";
 const { ipcRenderer, contentTracing } = require("electron");
 
 export function doTiles(brandName, machineBrand) {
@@ -114,7 +114,7 @@ function config(event) {
   const brand = element.dataset.brand;
   const name = element.dataset.name;
 
-  const emulator = findEmulator(getConfigFile().systems, brand, name);
+  const emulator = findSystem(getConfigFile().systems, brand, name);
 
   const content = { width : 600, height : 460, type : 'config', content: emulator }
   ipcRenderer.send("showDialogWindow", content);
@@ -125,18 +125,19 @@ export function play(event) {
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
+  const configFile = getConfigFile();
 
-  const emulator = findEmulator(getConfigFile().systems, brand, name);
-  // We know the emulator type, now we need the type command and parameters
+  const system = findSystem(getConfigFile().systems, brand, name);
 
-  let jsonSystems = getConfigFile().types;
-  var ret = jsonSystems.find((e) => e.type === emulator.type);
-  var config = getConfig();
-  emulator.system = ret;
-  emulator.config = config;
+  let jsonEmulators = configFile.emulators;
+  var emulator = jsonEmulators.find((e) => e.key === system.emulator);
 
-  //var foo = ipcRenderer.send("playClick", emulator);
-  console.log(foo)
+  var config = configFile.config;
+
+  system.emulator = emulator
+  system.config = config
+  ipcRenderer.send("playClick", system);
+ 
 }
 
 
@@ -144,7 +145,7 @@ function remove(event) {
   const element = event.target;
   const brand = element.dataset.brand;
   const name = element.dataset.name;
-  const emulator = findEmulator(getConfigFile().systems, brand, name);
+  const emulator = findSystem(getConfigFile().systems, brand, name);
   const content = { width : 400, height : 350, type : 'remove', content: emulator }
   ipcRenderer.send("showDialogWindow", content);
 
@@ -158,7 +159,7 @@ function favorite(event) {
 
   const jsonResult = getConfigFile();
 
-  const emulator = findEmulator(jsonResult.systems, selectBrand, name);
+  const emulator = findSystem(jsonResult.systems, selectBrand, name);
   emulator.favorite = favorite == "true" ? "false" : "true";
 
   saveConfigFile(jsonResult);

@@ -28,14 +28,14 @@
   "emulators": [
     {
       "name": "FUSE",
-      "key": "sinclair",
+      "key": "fuse",
       "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--full-screen"
     },
     {
       "name": "ZEsarUX",
-      "key": "sinclair",
+      "key": "zesarux",
       "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--vo sdl --fullscreen"
@@ -73,7 +73,7 @@
     },
     {
       "brand": "apple2",
-      "name": "Original Macintosh 1",
+      "name": "Original Macintosh 11",
       "desc": "Apple's first Mac",
       "emulator": "apple2",
       "favorite": "false",
@@ -109,7 +109,7 @@
     },
     {
       "brand": "sinclair",
-      "name": "Microdigital TK90X",
+      "name": "Microdigital TK90X1",
       "desc": "Brasilian Clone",
       "emulator": "zesarux",
       "favorite": "true",
@@ -226,15 +226,6 @@
       "desc": "First AGA amiga computer",
       "emulator": "amiga",
       "parameter": "",
-      "favorite": "false",
-      "image": ""
-    },
-    {
-      "brand": "amiga",
-      "name": "Amiga 4000",
-      "desc": "desca400",
-      "emulator": "amiga",
-      "parameter": "param a4000",
       "favorite": "false",
       "image": ""
     }

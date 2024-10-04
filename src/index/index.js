@@ -67,16 +67,14 @@ app.on("window-all-closed", () => {
 /////////////////////////////
 // PLAY BUTTON
 ////////////////////////////
-
 ipcMain.on("playClick", async (event, content) => {
-  console.log("play");
+  console.log(content);
   //ROM PATH
   let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath);
 
-  const emulatorProcess = spawn(content.system.path, parameter.split(" "));
+  const emulatorProcess = spawn(content.emulator.path, parameter.split(" "));
 
   emulatorProcess.on("error", (err) => {
-    console.log("deu pau", err);
     const content = { width: 600, height: 450, type: "error", err: err };
     createDialogWindow(content);
   });

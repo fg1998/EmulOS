@@ -1,6 +1,6 @@
 // Requer o ipcRenderer do Electron
 const { ipcRenderer } = require("electron");
-import { findEmulator, getConfigFile, saveConfigFile } from "../util.js";
+import { findSystem, getConfigFile, saveConfigFile } from "../util.js";
 const querystring = require("querystring");
 
 let query = querystring.parse(global.location.search);

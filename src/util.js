@@ -2,13 +2,13 @@ var path = require("path");
 var fs = require("fs");
 var XMLParser = require("fast-xml-parser");
 
-export function findEmulator(jsonResult, brandName, emulatorName) {
+export function findSystem(jsonResult, brandName, emulatorName) {
   
 
-  const emulator = jsonResult.find((emulator) => emulator.brand == brandName && emulator.name == emulatorName);
-  if (emulator) {
-    var ret = emulator
-    return ret;
+  const system = jsonResult.find((system) => system.brand == brandName && system.name == emulatorName);
+  if (system) {
+    var ret = system
+    return system;
   }
   return null;
 }

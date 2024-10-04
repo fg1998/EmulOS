@@ -1,14 +1,13 @@
 // Requer o ipcRenderer do Electron
 const { ipcRenderer } = require("electron");
-import { findEmulator, getConfigFile, saveConfigFile } from "../util.js";
+import { findSystem, getConfigFile, saveConfigFile } from "../util.js";
 const querystring = require("querystring");
 
 let query = querystring.parse(global.location.search);
 let data = JSON.parse(query["?data"]);
 
-
-document.getElementById('brand').value = data.content.brand
-document.getElementById('name').value = data.content.name
+document.getElementById("brand").value = data.content.brand;
+document.getElementById("name").value = data.content.name;
 
 // CANCEL BUTTON EVENT
 document.addEventListener("DOMContentLoaded", () => {
@@ -18,9 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-
 export function goToFirstWindow(param) {
-    ipcRenderer.send("close-dialog-window", param);
+  ipcRenderer.send("close-dialog-window", param);
 }
 
 // REMOVE  BUTTON EVENT
@@ -32,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function cancel() {
-  goToFirstWindow(null)
+  goToFirstWindow(null);
 }
 
 // REMOVE BUTTON METHOD
@@ -49,4 +47,3 @@ function remove() {
   saveConfigFile(jsonResult);
   goToFirstWindow({ brand: _brand, name: _name });
 }
-
