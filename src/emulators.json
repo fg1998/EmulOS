@@ -23,20 +23,25 @@
     {
       "name": "amiga",
       "desc": "Amiga"
+    },
+    {
+      "name": "trs80",
+      "desc": "Tandy/Radio Shack"
     }
   ],
   "emulators": [
     {
-      "name": "FUSE",
-      "key": "fuse",
-      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
-      "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
-      "param": "--full-screen"
+      "name": "openMSX",
+      "key": "openmsx",
+      "path": "/home/fg1998/emulators/openmsx-bin/run.sh",
+      "desc": "MSX emulator",
+      "param1": "",
+      "param": ""
     },
     {
       "name": "ZEsarUX",
       "key": "zesarux",
-      "path": "/Applications/Fuse.app/Contents/MacOS/Fuse",
+      "path": "/home/fg1998/emulators/zesarux/zesarux",
       "desc": "Free Unix Spectrum Emulator. 48k adn 128k spectrum, also others like pentagon and brazilian clone tk90x",
       "param": "--vo sdl --fullscreen"
     },
@@ -60,6 +65,12 @@
       "path": "/Applications/Vice.app/Contents/macOS/apple2",
       "desc": "Apple 8 bit emulator",
       "param": ""
+    },
+    {
+      "name": "trs80gp",
+      "key": "trs80gp",
+      "path": "home/fg1998/emulators/trs80gp/trs80gp",
+      "param": "trs80gp -vf "
     }
   ],
   "systems": [
@@ -96,7 +107,7 @@
       "emulator": "zesarux",
       "favorite": "false",
       "image": "128.png",
-      "parameter": "--machine 128"
+      "parameter": "--machine 128k"
     },
     {
       "brand": "sinclair",
@@ -114,7 +125,7 @@
       "emulator": "zesarux",
       "favorite": "true",
       "image": "tk90x.png",
-      "parameter": "--machine 48 --rom-48 ${rompath}/tk90x.rom --aspect-hint --full-screen"
+      "parameter": "--machine tk90x"
     },
     {
       "brand": "sinclair",
@@ -163,7 +174,7 @@
       "brand": "msx",
       "name": "Hotbit 1.2",
       "desc": "Brazilian MSX 1.2",
-      "emulator": "msx",
+      "emulator": "openmsx",
       "favorite": "true",
       "image": "hotbit.png",
       "parameter": "Sharp_HB-8000_1.2"
@@ -172,7 +183,7 @@
       "brand": "msx",
       "name": "Expert 1.1",
       "desc": "Brazilian MSX 1",
-      "emulator": "msx",
+      "emulator": "openmsx",
       "favorite": "true",
       "image": "expert.png",
       "parameter": "Gradiente_Expert_GPC-1"
@@ -189,7 +200,7 @@
       "brand": "msx",
       "name": "FS-5500 F2",
       "desc": "Nationa FS-5500 F2 MSX2",
-      "emulator": "msx",
+      "emulator": "openmsx",
       "image": "5500.png",
       "favorite": false,
       "parameter": "National_FS-5500F2"
@@ -226,6 +237,15 @@
       "desc": "First AGA amiga computer",
       "emulator": "amiga",
       "parameter": "",
+      "favorite": "false",
+      "image": ""
+    },
+    {
+      "brand": "trs80",
+      "name": "TRS80 Model I",
+      "desc": "First TRS80 computer",
+      "emulator": "trs80gp",
+      "parameter": "-m1",
       "favorite": "false",
       "image": ""
     }

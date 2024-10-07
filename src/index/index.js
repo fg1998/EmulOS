@@ -1,7 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron");
 const { ipcRenderer } = require("electron");
 const path = require("node:path");
-const { spawn } = require("node:child_process");
+const execFile = require('child_process').execFile
 //require("./dialog.js");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -12,7 +12,7 @@ if (require("electron-squirrel-startup")) {
 //HOT RELOAD
 try {
   require("electron-reloader")(module, {
-    ignore: ["src/emulators*.json"],
+    //ignore: ["src/emulators*.json"],
   });
 } catch (_) {}
 
@@ -72,13 +72,25 @@ ipcMain.on("playClick", async (event, content) => {
   //ROM PATH
   let parameter = content.parameter.replaceAll("${rompath}", content.config.rompath);
 
-  const emulatorProcess = spawn(content.emulator.path, parameter.split(" "));
+  paramList = content.emulator.param.split(' ');
+  paramList.push(...parameter.split(' '));
+  console.log(paramList)
 
-  emulatorProcess.on("error", (err) => {
-    const content = { width: 600, height: 450, type: "error", err: err };
-    createDialogWindow(content);
+  const emulatorProcess = execFile(content.emulator.path, paramList, (error, stdout, stderr)=> {
+    if(error){
+      console.log(' error ');
+      console.log(error)
+      const content = { width: 600, height: 450, type: "error", err: error };
+      createDialogWindow(content);
+      throw error
+    }
+    console.log(stdout)
   });
+
 });
+
+
+
 
 ipcMain.on("showDialogWindow", (event, content) => {
   createDialogWindow(content);
